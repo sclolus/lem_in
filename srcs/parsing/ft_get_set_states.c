@@ -1,36 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_get_new_cmd.c                                   :+:      :+:    :+:   */
+/*   ft_get_set_states.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sclolus <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/07/25 14:12:18 by sclolus           #+#    #+#             */
-/*   Updated: 2017/07/25 23:35:51 by sclolus          ###   ########.fr       */
+/*   Created: 2017/07/25 23:30:21 by sclolus           #+#    #+#             */
+/*   Updated: 2017/07/25 23:39:17 by sclolus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-int32_t			ft_get_new_cmd(char *line
-						, t_lem_in_data *lem_in_data __attribute__((unused)))
+int32_t	*ft_get_set_states(void)
 {
-	static t_cmd	cmd_tab[] = {
-		{"start", START, {0}},
-		{"end", END, {0}}};
-	uint32_t		i;
+	static int32_t	states[2];
 
-	i = 0;
-	while (i < sizeof(cmd_tab) / sizeof(t_cmd))
-	{
-		if (ft_strequ(line + 2, cmd_tab[i].identifier))
-		{
-			if (ft_get_set_states()[i])
-				return (0);
-			*ft_get_last_attribute() = cmd_tab[i].attr;
-			break;
-		}
-		i++;
-	}
-	return (1);
+	return (states);
 }

@@ -6,20 +6,30 @@
 /*   By: sclolus <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/10 04:07:59 by sclolus           #+#    #+#             */
-/*   Updated: 2017/07/25 14:43:01 by sclolus          ###   ########.fr       */
+/*   Updated: 2017/07/25 23:25:35 by sclolus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-static int32_t	ft_is_case_note(char *line, t_parsing_case last_case __attribute__((unused)))
+static int32_t	ft_is_case_start(char *line __attribute__((unused))
+								, t_parsing_case last_case)
+{
+	if (last_case == ERROR)
+		return (1);
+	return (0);
+}
+
+static int32_t	ft_is_case_note(char *line
+							, t_parsing_case last_case __attribute__((unused)))
 {
 	if (*line && *line == '#' && line[1] != '#')
 		return (1);
 	return (0);
 }
 
-static int32_t	ft_is_case_cmd(char *line, t_parsing_case last_case __attribute__((unused)))
+static int32_t	ft_is_case_cmd(char *line
+						, t_parsing_case last_case __attribute__((unused)))
 {
 	if (*line && *line == '#' && line[1] == '#')
 		return (1);
@@ -46,14 +56,28 @@ static int32_t	ft_is_case_room(char *line, t_parsing_case last_case)
 	return (word_count == 2 ? 1 : 0);
 }
 
-static int32_t	ft_is_case_tube(char *line __attribute__((unused)), t_parsing_case last_case __attribute__((unused)))
+static int32_t	ft_is_case_tube(char *line, t_parsing_case last_case)
 {
-	return (1);
+	uint32_t	i;
+	int32_t		bool;
+
+	i = 0;
+	bool = 0;
+	if (last_case == CMD)
+		return (0);
+	while (line[i])
+	{
+		if (i && line[i] == '-' && line[i + 1])
+			bool = 1;
+		i++;
+	}
+	return (bool);
 }
 
 t_parsing_case	ft_get_case(char *line, t_parsing_case last_case)
 {
 	static t_parsing_case_identifier	case_f_tab[] = {
+		{&ft_is_case_start, BEGIN, {0}},
 		{&ft_is_case_room, ROOM, {0}},
 		{&ft_is_case_note, NOTE, {0}},
 		{&ft_is_case_cmd, CMD, {0}},
@@ -61,7 +85,7 @@ t_parsing_case	ft_get_case(char *line, t_parsing_case last_case)
 	uint32_t				i;
 
 	i = 0;
-	while (i < sizeof(case_f_tab) / sizeof(t_case_function))
+	while (i < sizeof(case_f_tab) / sizeof(t_parsing_case_identifier))
 	{
 		if (case_f_tab[i].f(line, last_case))
 			return (case_f_tab[i].identifier_case);

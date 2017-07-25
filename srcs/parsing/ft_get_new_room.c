@@ -6,7 +6,7 @@
 /*   By: sclolus <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/25 14:11:31 by sclolus           #+#    #+#             */
-/*   Updated: 2017/07/25 18:50:12 by sclolus          ###   ########.fr       */
+/*   Updated: 2017/07/26 00:23:34 by sclolus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,16 @@ int32_t			ft_get_new_room(char *line, t_lem_in_data *lem_in_data)
 	last_attr = ft_get_last_attribute();
 	while (line[i] && line[i] != ' ')
 		i++;
+	if (line[0] == 'L')
+		return (0);
 	if (!(name = ft_strndup(line, i)))
 		ft_error_exit(1, (char*[]){MALLOC_FAILURE}, EXIT_FAILURE);
 	if (!(ft_get_room_coords(line + i, &coords)))
 		return (0);
+	if (*last_attr == START)
+		ft_get_set_states()[0] = 1;
+	else if (*last_attr == END)
+		ft_get_set_states()[1] = 1;
 	ft_mem_block_push_back_elem(lem_in_data->data, &(t_room){name, 1, 0, coords
 				, *last_attr, 0, ft_create_mem_block(DEFAULT_MEM_BLOCK_SIZE)}, sizeof(t_room));
 	*last_attr = NORMAL;

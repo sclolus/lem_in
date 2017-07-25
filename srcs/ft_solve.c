@@ -6,7 +6,7 @@
 /*   By: sclolus <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/25 15:32:28 by sclolus           #+#    #+#             */
-/*   Updated: 2017/07/25 20:44:49 by sclolus          ###   ########.fr       */
+/*   Updated: 2017/07/25 20:47:45 by sclolus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,14 +53,14 @@ static void		ft_print_stack(t_lem_in_data *lem_in_data
 	i = 1;
 	while (lem_nbr != 0)
 	{
-		u = /* lem_in_data->lem_nbr - lem_nbr */ 0;
+		u = 0;
 		while (u < i && u < lem_nbr)
 		{
 			ft_putchar('L');
 			ft_putnbr((int)((int)(lem_in_data->lem_nbr - lem_nbr) + (int)u + 1));
 			ft_putchar('-');
 			ft_putstr(stack[i - u].room->name);
-			ft_putchar(' '
+			ft_putchar(' ');
 			u++;
 		}
 		ft_putchar('\n');
