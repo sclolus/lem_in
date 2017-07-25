@@ -6,7 +6,7 @@
 /*   By: sclolus <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/04 11:35:25 by sclolus           #+#    #+#             */
-/*   Updated: 2017/07/11 05:22:40 by sclolus          ###   ########.fr       */
+/*   Updated: 2017/07/25 17:48:17 by sclolus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # define STATIC_BUF_SIZE 3
 # define STATIC_PUT_FLUSH 1
 
-# define ERROR_NAME_HEADER "libft_default_error: "
+# define ERROR_NAME_HEADER "lem_in: "
 
 typedef struct	s_list
 {

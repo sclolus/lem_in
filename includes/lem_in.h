@@ -6,7 +6,7 @@
 /*   By: sclolus <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/25 13:52:30 by sclolus           #+#    #+#             */
-/*   Updated: 2017/07/25 15:52:13 by sclolus          ###   ########.fr       */
+/*   Updated: 2017/07/25 20:41:36 by sclolus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ typedef struct	s_room
 	uint32_t		nbr_tube;
 	t_coord			coords;
 	t_attribute		attribute;
-	char			pad[4];
+	uint32_t		used;
 	t_mem_block		*tubes;
 }				t_room;
 
@@ -116,6 +116,7 @@ typedef struct	s_solve_stack
 {
 	t_room		*room;
 	uint32_t	tube_index;
+	char		pad[4];
 }				t_solve_stack;
 
 void	ft_solve(t_lem_in_data *lem_in_data);
