@@ -6,20 +6,21 @@
 /*   By: sclolus <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/25 14:04:28 by sclolus           #+#    #+#             */
-/*   Updated: 2017/06/25 14:11:55 by sclolus          ###   ########.fr       */
+/*   Updated: 2017/07/25 14:18:30 by sclolus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "filler.h"
+#include "lem_in.h"
 
 void	*ft_mem_block_push_back_elem(t_mem_block *mem_block
 									, void *elem, uint32_t size)
 {
 	while (mem_block->next)
 		mem_block = mem_block->next;
-	if (mem_block->offset + size < mem_block->capacity)
+	if (mem_block->offset + size <= mem_block->capacity)
 	{
-		ft_memcpy(mem_block + mem_block->offset, elem, size);
+		ft_memcpy((unsigned char*)mem_block->block
+				+ mem_block->offset, elem, size);
 		mem_block->offset += size;
 	}
 	else
