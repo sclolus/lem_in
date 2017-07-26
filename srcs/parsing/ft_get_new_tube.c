@@ -6,7 +6,7 @@
 /*   By: sclolus <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/10 05:13:25 by sclolus           #+#    #+#             */
-/*   Updated: 2017/07/26 18:40:11 by sclolus          ###   ########.fr       */
+/*   Updated: 2017/07/26 19:04:18 by sclolus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ inline static uint32_t	ft_get_new_tube_name_len(char *line)
 	return (i);
 }
 
-int32_t			ft_get_new_tube(char *line, t_lem_in_data *lem_in_data)
+int32_t					ft_get_new_tube(char *line, t_lem_in_data *lem_in_data)
 {
 	t_room		*tab[2];
 	uint32_t	len;

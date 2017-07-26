@@ -6,13 +6,13 @@
 /*   By: sclolus <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/10 03:51:49 by sclolus           #+#    #+#             */
-/*   Updated: 2017/07/26 14:22:23 by sclolus          ###   ########.fr       */
+/*   Updated: 2017/07/26 19:05:30 by sclolus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-static void	ft_put_case(t_parsing_case current_case)
+static void			ft_put_case(t_parsing_case current_case)
 {
 	ft_putstr("Parsing case: ");
 	if (current_case == NOTE)

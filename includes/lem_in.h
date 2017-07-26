@@ -6,7 +6,7 @@
 /*   By: sclolus <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/25 13:52:30 by sclolus           #+#    #+#             */
-/*   Updated: 2017/07/26 18:44:29 by sclolus          ###   ########.fr       */
+/*   Updated: 2017/07/26 19:05:13 by sclolus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,18 @@ typedef int32_t	(*t_parsing_action)(char *, t_lem_in_data *);
 
 t_lem_in_data	*ft_parse(void);
 t_parsing_case	ft_get_case(char *line, t_parsing_case last_case);
+
+/*
+** I hate the norme for this
+*/
+
+int32_t			ft_is_case_start(char __attribute__((unused)) *line
+								, t_parsing_case last_case);
+
+/*
+** Fuck the norme
+*/
+
 t_attribute		*ft_get_last_attribute(void);
 int32_t			ft_get_lem_nbr(char *line
 							, t_lem_in_data *lem_in_data) __attribute__((cold));

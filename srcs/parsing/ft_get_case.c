@@ -6,22 +6,14 @@
 /*   By: sclolus <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/10 04:07:59 by sclolus           #+#    #+#             */
-/*   Updated: 2017/07/26 18:35:50 by sclolus          ###   ########.fr       */
+/*   Updated: 2017/07/26 18:56:51 by sclolus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-inline static int32_t	ft_is_case_start(char *line __attribute__((unused))
-								, t_parsing_case last_case)
-{
-	if (last_case == ERROR)
-		return (1);
-	return (0);
-}
-
 inline static int32_t	ft_is_case_note(char *line
-							, t_parsing_case last_case __attribute__((unused)))
+							, t_parsing_case __attribute__((unused)) last_case)
 {
 	if (*line && *line == '#' && line[1] != '#')
 		return (1);
@@ -29,7 +21,7 @@ inline static int32_t	ft_is_case_note(char *line
 }
 
 inline static int32_t	ft_is_case_cmd(char *line
-						, t_parsing_case last_case __attribute__((unused)))
+						, t_parsing_case __attribute__((unused)) last_case)
 {
 	if (*line && *line == '#' && line[1] == '#')
 		return (1);
@@ -48,7 +40,6 @@ inline static int32_t	ft_is_case_room(char *line, t_parsing_case last_case)
 	while (line[i])
 	{
 		if (line[i] == ' ')
-
 			word_count++;
 		if (word_count > 3)
 			return (0);
@@ -77,7 +68,7 @@ inline static int32_t	ft_is_case_tube(char *line, t_parsing_case last_case)
 	return (bool);
 }
 
-t_parsing_case	ft_get_case(char *line, t_parsing_case last_case)
+t_parsing_case			ft_get_case(char *line, t_parsing_case last_case)
 {
 	static t_parsing_case_identifier	case_f_tab[] = {
 		{&ft_is_case_start, BEGIN, {0}},
@@ -85,7 +76,7 @@ t_parsing_case	ft_get_case(char *line, t_parsing_case last_case)
 		{&ft_is_case_note, NOTE, {0}},
 		{&ft_is_case_cmd, CMD, {0}},
 		{&ft_is_case_tube, TUBE, {0}}};
-	uint32_t				i;
+	uint32_t							i;
 
 	i = 0;
 	while (i < sizeof(case_f_tab) / sizeof(t_parsing_case_identifier))

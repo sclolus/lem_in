@@ -4,6 +4,7 @@ SRC= srcs/main.c \
 	srcs/parsing/ft_parse.c \
 	srcs/parsing/ft_get_lem_nbr.c \
 	srcs/parsing/ft_get_case.c \
+	srcs/parsing/ft_is_case_start.c \
 	srcs/parsing/ft_get_last_attr.c \
 	srcs/parsing/ft_parsing_actions.c \
 	srcs/parsing/ft_get_new_tube.c \
