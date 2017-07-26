@@ -6,7 +6,7 @@
 /*   By: sclolus <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/10 03:50:38 by sclolus           #+#    #+#             */
-/*   Updated: 2017/07/26 15:39:46 by sclolus          ###   ########.fr       */
+/*   Updated: 2017/07/26 18:46:14 by sclolus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ static void	ft_put_lines(t_mem_block *lines)
 	data = lines;
 	while (i * sizeof(char*) < data->offset)
 	{
-		ft_static_put(*((char**)data->block + i), (uint32_t)ft_strlen(*((char**)data->block + i)), 0);
+		ft_static_put(*((char**)data->block + i)
+					, (uint32_t)ft_strlen(*((char**)data->block + i)), 0);
 		ft_static_put("\n", 1, 0);
 		i++;
 		if (i * sizeof(t_room) >= data->offset && data->next)
@@ -63,7 +64,8 @@ static void	ft_put_rooms(t_lem_in_data *lem_in_data)
 	data = lem_in_data->data;
 	while (i * sizeof(t_room) < data->offset)
 	{
-		printf("room: %s has %u tubes: \n", ((t_room*)data->block + i)->name, ((t_room*)data->block + i)->nbr_tube);
+		printf("room: %s has %u tubes: \n", ((t_room*)data->block + i)->name
+			, ((t_room*)data->block + i)->nbr_tube);
 		ft_put_tubes(((t_room*)data->block + i));
 		i++;
 		if (i * sizeof(t_room) >= data->offset && data->next)
@@ -74,7 +76,7 @@ static void	ft_put_rooms(t_lem_in_data *lem_in_data)
 	}
 }
 
-int	main(int argc __attribute__((unused)), char **argv __attribute__((unused)))
+int			main(void)
 {
 	t_lem_in_data	*lem_in_data;
 
