@@ -6,7 +6,7 @@
 /*   By: sclolus <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/25 13:52:30 by sclolus           #+#    #+#             */
-/*   Updated: 2017/07/26 14:25:10 by sclolus          ###   ########.fr       */
+/*   Updated: 2017/07/26 18:44:29 by sclolus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,6 @@
 # include "libft.h"
 # include <stdint.h>
 # include <stdio.h>
-
-/*
-** DEBUG
-*/
-
-
-# define CHECK(x) do {ft_putendl_fd("_______", 2);ft_putendl_fd(#x, 2);ft_putendl_fd("_______", 2);}while(0);
 
 typedef enum	e_attribute
 {
@@ -60,7 +53,6 @@ typedef struct	s_room
 typedef struct	s_lem_in_data
 {
 	t_mem_block *data;
-//	t_list		*lines;
 	t_mem_block	*lines;
 	uint32_t	room_nbr;
 	uint32_t	lem_nbr;
@@ -104,12 +96,18 @@ typedef int32_t	(*t_parsing_action)(char *, t_lem_in_data *);
 t_lem_in_data	*ft_parse(void);
 t_parsing_case	ft_get_case(char *line, t_parsing_case last_case);
 t_attribute		*ft_get_last_attribute(void);
-int32_t			ft_get_lem_nbr(char *line, t_lem_in_data *lem_in_data) __attribute__((cold));
-int32_t			ft_get_new_room(char *line, t_lem_in_data *lem_in_data) __attribute__((hot));
-int32_t			ft_get_new_cmd(char *line, t_lem_in_data *lem_in_data) __attribute__((hot));
-int32_t			ft_get_new_tube(char *line, t_lem_in_data *lem_in_data) __attribute__((hot));
-int32_t			ft_get_new_note(char *line, t_lem_in_data *lem_in_data) __attribute__((hot));
-int32_t			ft_error_case(char *line, t_lem_in_data *lem_in_data);
+int32_t			ft_get_lem_nbr(char *line
+							, t_lem_in_data *lem_in_data) __attribute__((cold));
+int32_t			ft_get_new_room(char *line
+							, t_lem_in_data *lem_in_data) __attribute__((hot));
+int32_t			ft_get_new_cmd(char *line
+							, t_lem_in_data *lem_in_data) __attribute__((hot));
+int32_t			ft_get_new_tube(char *line
+							, t_lem_in_data *lem_in_data) __attribute__((hot));
+int32_t			ft_get_new_note(char *line
+							, t_lem_in_data *lem_in_data) __attribute__((hot));
+int32_t			ft_error_case(char *line
+							, t_lem_in_data *lem_in_data);
 int32_t			*ft_get_set_states(void);
 void			ft_check_integrity(t_lem_in_data *lem_in_data);
 
@@ -124,25 +122,24 @@ typedef struct	s_solve_stack
 	char		pad[4];
 }				t_solve_stack;
 
-void	ft_solve(t_lem_in_data *lem_in_data);
+void			ft_solve(t_lem_in_data *lem_in_data);
 
 /*
 ** Mem_block handling
 */
 
-#define MEM_BLOCK_LIMIT 256
-#define DEFAULT_MEM_BLOCK_SIZE (sizeof(t_room)  * sizeof(t_room*) * 100000)
+# define MEM_BLOCK_LIMIT 256
+# define DEFAULT_MEM_BLOCK_SIZE (sizeof(t_room)  * sizeof(t_room*) * 100000)
 
-void		*ft_mem_block_push_back_elem(t_mem_block *mem_block
+void			*ft_mem_block_push_back_elem(t_mem_block *mem_block
 									, void *elem, uint32_t size);
-t_mem_block	*ft_create_mem_block(uint64_t capacity);
-
+t_mem_block		*ft_create_mem_block(uint64_t capacity);
 
 /*
 ** Error handling
 */
 
-# define INVALID_MEM_CAPACITY "Invalid capacity provided to ft_create_mem_block()"
+# define INVALID_MEM_CAPACITY "Invalid size provided to ft_create_mem_block()"
 # define MALLOC_FAILURE "malloc() failed due to insufficient ressources left"
 # define LEM_IN_ERR "ERROR"
 #endif

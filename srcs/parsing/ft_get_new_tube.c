@@ -6,13 +6,14 @@
 /*   By: sclolus <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/10 05:13:25 by sclolus           #+#    #+#             */
-/*   Updated: 2017/07/26 14:30:45 by sclolus          ###   ########.fr       */
+/*   Updated: 2017/07/26 18:40:11 by sclolus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-inline static t_room	*ft_find_room(char *name, uint32_t len, t_mem_block *data)
+inline static t_room	*ft_find_room(char *name, uint32_t len
+									, t_mem_block *data)
 {
 	uint32_t	i;
 
