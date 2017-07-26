@@ -6,13 +6,13 @@
 /*   By: sclolus <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/10 04:07:59 by sclolus           #+#    #+#             */
-/*   Updated: 2017/07/25 23:25:35 by sclolus          ###   ########.fr       */
+/*   Updated: 2017/07/26 18:35:50 by sclolus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-static int32_t	ft_is_case_start(char *line __attribute__((unused))
+inline static int32_t	ft_is_case_start(char *line __attribute__((unused))
 								, t_parsing_case last_case)
 {
 	if (last_case == ERROR)
@@ -20,7 +20,7 @@ static int32_t	ft_is_case_start(char *line __attribute__((unused))
 	return (0);
 }
 
-static int32_t	ft_is_case_note(char *line
+inline static int32_t	ft_is_case_note(char *line
 							, t_parsing_case last_case __attribute__((unused)))
 {
 	if (*line && *line == '#' && line[1] != '#')
@@ -28,7 +28,7 @@ static int32_t	ft_is_case_note(char *line
 	return (0);
 }
 
-static int32_t	ft_is_case_cmd(char *line
+inline static int32_t	ft_is_case_cmd(char *line
 						, t_parsing_case last_case __attribute__((unused)))
 {
 	if (*line && *line == '#' && line[1] == '#')
@@ -36,7 +36,7 @@ static int32_t	ft_is_case_cmd(char *line
 	return (0);
 }
 
-static int32_t	ft_is_case_room(char *line, t_parsing_case last_case)
+inline static int32_t	ft_is_case_room(char *line, t_parsing_case last_case)
 {
 	uint32_t	i;
 	uint32_t	word_count;
@@ -48,6 +48,7 @@ static int32_t	ft_is_case_room(char *line, t_parsing_case last_case)
 	while (line[i])
 	{
 		if (line[i] == ' ')
+
 			word_count++;
 		if (word_count > 3)
 			return (0);
@@ -56,14 +57,16 @@ static int32_t	ft_is_case_room(char *line, t_parsing_case last_case)
 	return (word_count == 2 ? 1 : 0);
 }
 
-static int32_t	ft_is_case_tube(char *line, t_parsing_case last_case)
+inline static int32_t	ft_is_case_tube(char *line, t_parsing_case last_case)
 {
 	uint32_t	i;
 	int32_t		bool;
 
 	i = 0;
 	bool = 0;
-	if (last_case == CMD)
+	if (last_case == CMD &&
+		(*ft_get_last_attribute() == START
+		|| *ft_get_last_attribute() == END))
 		return (0);
 	while (line[i])
 	{

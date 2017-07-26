@@ -6,7 +6,7 @@
 /*   By: sclolus <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/25 13:52:30 by sclolus           #+#    #+#             */
-/*   Updated: 2017/07/25 23:31:26 by sclolus          ###   ########.fr       */
+/*   Updated: 2017/07/26 14:25:10 by sclolus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,8 @@ typedef struct	s_room
 typedef struct	s_lem_in_data
 {
 	t_mem_block *data;
-	t_list		*lines;
+//	t_list		*lines;
+	t_mem_block	*lines;
 	uint32_t	room_nbr;
 	uint32_t	lem_nbr;
 }				t_lem_in_data;
@@ -103,13 +104,14 @@ typedef int32_t	(*t_parsing_action)(char *, t_lem_in_data *);
 t_lem_in_data	*ft_parse(void);
 t_parsing_case	ft_get_case(char *line, t_parsing_case last_case);
 t_attribute		*ft_get_last_attribute(void);
-int32_t			ft_get_lem_nbr(char *line, t_lem_in_data *lem_in_data);
-int32_t			ft_get_new_room(char *line, t_lem_in_data *lem_in_data);
-int32_t			ft_get_new_cmd(char *line, t_lem_in_data *lem_in_data);
-int32_t			ft_get_new_tube(char *line, t_lem_in_data *lem_in_data);
-int32_t			ft_get_new_note(char *line, t_lem_in_data *lem_in_data);
+int32_t			ft_get_lem_nbr(char *line, t_lem_in_data *lem_in_data) __attribute__((cold));
+int32_t			ft_get_new_room(char *line, t_lem_in_data *lem_in_data) __attribute__((hot));
+int32_t			ft_get_new_cmd(char *line, t_lem_in_data *lem_in_data) __attribute__((hot));
+int32_t			ft_get_new_tube(char *line, t_lem_in_data *lem_in_data) __attribute__((hot));
+int32_t			ft_get_new_note(char *line, t_lem_in_data *lem_in_data) __attribute__((hot));
 int32_t			ft_error_case(char *line, t_lem_in_data *lem_in_data);
 int32_t			*ft_get_set_states(void);
+void			ft_check_integrity(t_lem_in_data *lem_in_data);
 
 /*
 ** Solving

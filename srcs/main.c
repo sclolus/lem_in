@@ -6,19 +6,32 @@
 /*   By: sclolus <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/10 03:50:38 by sclolus           #+#    #+#             */
-/*   Updated: 2017/07/25 20:39:54 by sclolus          ###   ########.fr       */
+/*   Updated: 2017/07/26 15:39:46 by sclolus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-static void	ft_put_lines(t_list *lines)
+static void	ft_put_lines(t_mem_block *lines)
 {
-	while (lines)
+	uint32_t	i;
+	t_mem_block	*data;
+
+	i = 0;
+	data = lines;
+	while (i * sizeof(char*) < data->offset)
 	{
-		ft_putendl((const char*)lines->content);
-		lines = lines->next;
+		ft_static_put(*((char**)data->block + i), (uint32_t)ft_strlen(*((char**)data->block + i)), 0);
+		ft_static_put("\n", 1, 0);
+		i++;
+		if (i * sizeof(t_room) >= data->offset && data->next)
+		{
+			data = data->next;
+			i = 0;
+		}
 	}
+	ft_static_put("\n", 1, 0);
+	ft_static_put(NULL, 0, STATIC_PUT_FLUSH);
 }
 
 static void	ft_put_tubes(t_room *room)
@@ -66,12 +79,10 @@ int	main(int argc __attribute__((unused)), char **argv __attribute__((unused)))
 	t_lem_in_data	*lem_in_data;
 
 	lem_in_data = ft_parse();
-//	ft_putnbr((int)lem_in_data->room_nbr);
+	ft_check_integrity(lem_in_data);
 	(void)ft_put_lines(lem_in_data->lines);
 	fflush(NULL);
-	if (!lem_in_data->room_nbr || !lem_in_data->lem_nbr)
-		ft_error_exit(1, (char*[]){LEM_IN_ERR}, 0);
-	ft_put_rooms(lem_in_data);
+	(void)ft_put_rooms;
 	ft_solve(lem_in_data);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: sclolus <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/24 10:51:59 by sclolus           #+#    #+#             */
-/*   Updated: 2017/05/07 16:26:21 by sclolus          ###   ########.fr       */
+/*   Updated: 2017/07/26 14:19:54 by sclolus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static uint32_t	ft_static_auto_flush(char **str, uint32_t *len
 	offset_tmp = *offset;
 	while (len_tmp + offset_tmp >= STATIC_BUF_SIZE)
 	{
-		ft_memcpy(buf + offset_tmp, *str + count, STATIC_BUF_SIZE - offset_tmp);
+		ft_memcpy(buf + offset_tmp, *str, STATIC_BUF_SIZE - offset_tmp);
 		write(1, buf, STATIC_BUF_SIZE);
 		count += STATIC_BUF_SIZE;
 		len_tmp -= STATIC_BUF_SIZE - offset_tmp;

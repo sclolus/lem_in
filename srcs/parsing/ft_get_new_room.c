@@ -6,13 +6,13 @@
 /*   By: sclolus <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/25 14:11:31 by sclolus           #+#    #+#             */
-/*   Updated: 2017/07/26 00:23:34 by sclolus          ###   ########.fr       */
+/*   Updated: 2017/07/26 14:30:06 by sclolus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-static int32_t	ft_get_room_coords(char *line, t_coord *coords)
+inline static int32_t	ft_get_room_coords(char *line, t_coord *coords)
 {
 	uint32_t	i;
 	uint32_t	nbr_coords;
@@ -39,7 +39,7 @@ static int32_t	ft_get_room_coords(char *line, t_coord *coords)
 	return (1);
 }
 
-int32_t			ft_get_new_room(char *line, t_lem_in_data *lem_in_data)
+int32_t					ft_get_new_room(char *line, t_lem_in_data *lem_in_data)
 {
 	uint32_t	i;
 	t_coord		coords;

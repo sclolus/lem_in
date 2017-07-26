@@ -6,7 +6,7 @@
 /*   By: sclolus <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/10 03:51:49 by sclolus           #+#    #+#             */
-/*   Updated: 2017/07/25 23:43:41 by sclolus          ###   ########.fr       */
+/*   Updated: 2017/07/26 14:22:23 by sclolus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,41 +29,25 @@ static void	ft_put_case(t_parsing_case current_case)
 t_lem_in_data		*ft_parse(void)
 {
 	static const t_parsing_action	parsing_action[SUPPORTED_PARSING_CASE] = {
-		&ft_error_case,
-		&ft_get_lem_nbr,
-		&ft_get_new_note,
-		&ft_get_new_room,
-		&ft_get_new_tube,
-		&ft_get_new_cmd,
-	};
+		&ft_error_case, &ft_get_lem_nbr, &ft_get_new_note,
+		&ft_get_new_room, &ft_get_new_tube, &ft_get_new_cmd};
 	static t_lem_in_data			lem_in_data;
 	char							*line;
-	t_list							*lines;
-	t_list							*tmp;
 	t_parsing_case					last_case;
 	t_parsing_case					current_case;
 
 	lem_in_data.data = ft_create_mem_block(DEFAULT_MEM_BLOCK_SIZE);
-	lines = NULL;
+	lem_in_data.lines = ft_create_mem_block(DEFAULT_MEM_BLOCK_SIZE);
 	line = NULL;
 	last_case = ERROR;
 	while (get_next_line(0, &line) > 0)
 	{
 		if (!(current_case = ft_get_case(line, last_case))
 			|| !(parsing_action[current_case](line, &lem_in_data)))
-		{
-			lem_in_data.lines = lines;
 			return (&lem_in_data);
-		}
 		(void)ft_put_case;
-//		ft_put_case(current_case);
-//		printf("%s\n", line);
-		if (!(tmp = ft_lstnew(0, 0)))
-			ft_error_exit(1, (char*[]){MALLOC_FAILURE}, EXIT_FAILURE);
-		tmp->content = line;
-		ft_lstadd(&lines, tmp);
+		ft_mem_block_push_back_elem(lem_in_data.lines, &line, sizeof(line));
 		last_case = current_case;
 	}
-	lem_in_data.lines = lines;
 	return (&lem_in_data);
 }
