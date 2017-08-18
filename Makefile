@@ -1,6 +1,7 @@
 NAME= lem-in
 SRC= srcs/main.c \
 	srcs/ft_solve.c \
+	srcs/ft_put_lines.c \
 	srcs/parsing/ft_parse.c \
 	srcs/parsing/ft_get_lem_nbr.c \
 	srcs/parsing/ft_get_case.c \
@@ -18,7 +19,7 @@ SRC= srcs/main.c \
 OBJ= $(SRC:.c=.o)
 HDR_PATH= ./libft/includes/
 CC= gcc
-CC_FLAGS= -v -Weverything -Wall -Werror -Wextra  #-g3 -fsanitize=address -fsanitize-blacklist=my_ignores.txt
+CC_FLAGS= -v -Weverything -Wall -Werror -Wextra # -g3 -fsanitize=address -fsanitize-blacklist=my_ignores.txt
 #VPATH=./srcs:./obj:./includes/
 
 all: submodule $(NAME)

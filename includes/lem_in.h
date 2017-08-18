@@ -6,7 +6,7 @@
 /*   By: sclolus <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/25 13:52:30 by sclolus           #+#    #+#             */
-/*   Updated: 2017/07/26 19:05:13 by sclolus          ###   ########.fr       */
+/*   Updated: 2017/08/18 02:25:16 by sclolus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,13 @@ typedef struct	s_mem_block
 typedef struct	s_room
 {
 	char			*name;
+	uint32_t		len;
 	uint32_t		capacity;
 	uint32_t		nbr_tube;
 	t_coord			coords;
 	t_attribute		attribute;
 	uint32_t		used;
+	char			pad[4];
 	t_mem_block		*tubes;
 }				t_room;
 
@@ -135,13 +137,14 @@ typedef struct	s_solve_stack
 }				t_solve_stack;
 
 void			ft_solve(t_lem_in_data *lem_in_data);
+void			ft_put_lines(t_mem_block *lines);
 
 /*
 ** Mem_block handling
 */
 
 # define MEM_BLOCK_LIMIT 256
-# define DEFAULT_MEM_BLOCK_SIZE (sizeof(t_room)  * sizeof(t_room*) * 100000)
+# define DEFAULT_MEM_BLOCK_SIZE (sizeof(t_room) * sizeof(t_room*) * 150)
 
 void			*ft_mem_block_push_back_elem(t_mem_block *mem_block
 									, void *elem, uint32_t size);

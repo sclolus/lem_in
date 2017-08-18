@@ -6,7 +6,7 @@
 /*   By: sclolus <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/10 03:51:49 by sclolus           #+#    #+#             */
-/*   Updated: 2017/07/26 19:05:30 by sclolus          ###   ########.fr       */
+/*   Updated: 2017/08/18 02:24:51 by sclolus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ static void			ft_put_case(t_parsing_case current_case)
 		ft_putstr("TUBE");
 	else if (current_case == CMD)
 		ft_putstr("CMD");
+	else
+		ft_putnbr((int)current_case);
 	ft_putchar('\n');
 }
 
