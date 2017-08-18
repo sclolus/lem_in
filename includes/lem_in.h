@@ -6,7 +6,7 @@
 /*   By: sclolus <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/25 13:52:30 by sclolus           #+#    #+#             */
-/*   Updated: 2017/08/18 02:25:16 by sclolus          ###   ########.fr       */
+/*   Updated: 2017/08/18 05:50:54 by sclolus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,6 +138,8 @@ typedef struct	s_solve_stack
 
 void			ft_solve(t_lem_in_data *lem_in_data);
 void			ft_put_lines(t_mem_block *lines);
+void			ft_put_solution(t_lem_in_data *lem_in_data, t_solve_stack *stack
+								, uint32_t index) __attribute__((noreturn));
 
 /*
 ** Mem_block handling

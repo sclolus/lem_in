@@ -2,6 +2,7 @@ NAME= lem-in
 SRC= srcs/main.c \
 	srcs/ft_solve.c \
 	srcs/ft_put_lines.c \
+	srcs/ft_put_solution.c \
 	srcs/parsing/ft_parse.c \
 	srcs/parsing/ft_get_lem_nbr.c \
 	srcs/parsing/ft_get_case.c \
