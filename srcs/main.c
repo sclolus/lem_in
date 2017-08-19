@@ -6,7 +6,7 @@
 /*   By: sclolus <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/10 03:50:38 by sclolus           #+#    #+#             */
-/*   Updated: 2017/08/18 07:12:56 by sclolus          ###   ########.fr       */
+/*   Updated: 2017/08/19 03:32:17 by sclolus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,6 @@ int			main(void)
 	lem_in_data = ft_parse();
 	ft_check_integrity(lem_in_data);
 	ft_solve(lem_in_data);
-	ft_putendl(LEM_IN_ERR);
+	ft_putendl_fd(LEM_IN_ERR, 2);
 	return (0);
 }
