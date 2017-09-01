@@ -1,27 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_create_heap.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sclolus <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/07/10 03:50:38 by sclolus           #+#    #+#             */
-/*   Updated: 2017/09/01 12:42:12 by sclolus          ###   ########.fr       */
+/*   Created: 2017/08/30 23:25:48 by sclolus           #+#    #+#             */
+/*   Updated: 2017/08/30 23:36:30 by sclolus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem_in.h"
+#include "ft_heap.h"
 
-int			main(void)
+inline t_heap	*ft_create_heap(uint64_t type_size, uint64_t elem_nbr)
 {
-	t_lem_in_data	*lem_in_data;
+	t_heap	*heap;
 
-	lem_in_data = ft_parse();
-	ft_check_integrity(lem_in_data);
-//	ft_solve(lem_in_data);
-	ft_put_lines(lem_in_data->lines);
-	ft_static_put(NULL, 0, STATIC_PUT_FLUSH);
-	ft_dijsktra(lem_in_data);
-	ft_putendl_fd(LEM_IN_ERR, 2);
-	return (0);
+	if (!(heap = ft_memalloc(type_size * (elem_nbr + 1) + sizeof(t_heap))))
+		ft_error_exit(1, (char*[]){ERR_CREATE_HEAP}, EXIT_FAILURE);
+	heap->buffer = ((char*)heap) + sizeof(t_heap);
+	heap->i = 1;
+	heap->type_size = type_size;
+	heap->capacity = elem_nbr;
+	return (heap);
 }

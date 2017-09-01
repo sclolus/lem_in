@@ -6,14 +6,21 @@
 /*   By: sclolus <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/25 13:52:30 by sclolus           #+#    #+#             */
-/*   Updated: 2017/08/19 03:13:39 by sclolus          ###   ########.fr       */
+/*   Updated: 2017/09/01 10:16:40 by sclolus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LEM_IN_H
 # define LEM_IN_H
 
+/*
+** DEBUG
+*/ //
+
+# define CHECK(x) do {ft_putendl_fd("_______", 2);ft_putendl_fd(#x, 2);ft_putendl_fd("_______", 2);}while(0);
+
 # include "libft.h"
+# include "ft_heap.h"
 # include <stdint.h>
 
 typedef enum	e_attribute
@@ -45,10 +52,12 @@ typedef struct	s_room
 	uint32_t		capacity;
 	uint32_t		nbr_tube;
 	t_coord			coords;
+	char			pad[4];
+	uint64_t		distance;
 	t_attribute		attribute;
 	uint32_t		used;
-	char			pad[4];
 	t_mem_block		*tubes;
+	uint64_t		heap_index;
 }				t_room;
 
 typedef struct	s_lem_in_data
@@ -136,6 +145,7 @@ typedef struct	s_solve_stack
 }				t_solve_stack;
 
 void			ft_solve(t_lem_in_data *lem_in_data);
+void			ft_dijsktra(t_lem_in_data *lem_in_data);
 void			ft_put_lines(t_mem_block *lines);
 void			ft_put_solution(t_lem_in_data *lem_in_data, t_solve_stack *stack
 								, uint32_t index) __attribute__((noreturn));
