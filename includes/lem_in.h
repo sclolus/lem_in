@@ -6,7 +6,7 @@
 /*   By: sclolus <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/25 13:52:30 by sclolus           #+#    #+#             */
-/*   Updated: 2017/09/01 10:16:40 by sclolus          ###   ########.fr       */
+/*   Updated: 2017/09/01 14:28:40 by sclolus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ typedef struct	s_room
 	t_attribute		attribute;
 	uint32_t		used;
 	t_mem_block		*tubes;
+	struct s_room	*shortest;
 	uint64_t		heap_index;
 }				t_room;
 
@@ -64,6 +65,8 @@ typedef struct	s_lem_in_data
 {
 	t_mem_block *data;
 	t_mem_block	*lines;
+	t_room		*start;
+	t_room		*end;
 	uint32_t	room_nbr;
 	uint32_t	lem_nbr;
 }				t_lem_in_data;
@@ -140,15 +143,15 @@ void			ft_check_integrity(t_lem_in_data *lem_in_data);
 typedef struct	s_solve_stack
 {
 	t_room		*room;
-	uint32_t	tube_index;
-	char		pad[4];
+/* 	uint32_t	tube_index; */
+/* 	char		pad[4]; */
 }				t_solve_stack;
 
 void			ft_solve(t_lem_in_data *lem_in_data);
 void			ft_dijsktra(t_lem_in_data *lem_in_data);
 void			ft_put_lines(t_mem_block *lines);
 void			ft_put_solution(t_lem_in_data *lem_in_data, t_solve_stack *stack
-								, uint32_t index) __attribute__((noreturn));
+								, uint64_t index) __attribute__((noreturn));
 
 /*
 ** Mem_block handling

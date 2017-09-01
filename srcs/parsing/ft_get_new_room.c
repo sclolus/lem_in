@@ -6,7 +6,7 @@
 /*   By: sclolus <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/25 14:11:31 by sclolus           #+#    #+#             */
-/*   Updated: 2017/09/01 10:22:25 by sclolus          ###   ########.fr       */
+/*   Updated: 2017/09/01 14:58:31 by sclolus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ inline static int32_t	ft_get_room_coords(char *line, t_coord *coords)
 
 int32_t					ft_get_new_room(char *line, t_lem_in_data *lem_in_data)
 {
+	t_room		*room;
 	uint32_t	i;
 	t_coord		coords;
 	t_attribute	*last_attr;
@@ -56,13 +57,19 @@ int32_t					ft_get_new_room(char *line, t_lem_in_data *lem_in_data)
 		ft_error_exit(1, (char*[]){MALLOC_FAILURE}, EXIT_FAILURE);
 	if (!(ft_get_room_coords(line + i, &coords)))
 		return (0);
-	if (*last_attr == START)
-		ft_get_set_states()[0] = 1;
-	else if (*last_attr == END)
-		ft_get_set_states()[1] = 1;
-	ft_mem_block_push_back_elem(lem_in_data->data, &(t_room){name, i, 1, 0
-	, coords, {0}, ~0U, *last_attr, 0, ft_create_mem_block(DEFAULT_MEM_BLOCK_SIZE), 0}
+	room = ft_mem_block_push_back_elem(lem_in_data->data, &(t_room){name, i, 1, 0
+				, coords, {0}, ~0U, *last_attr, 0, ft_create_mem_block(DEFAULT_MEM_BLOCK_SIZE), NULL, 0}
 	, sizeof(t_room));
+	if (*last_attr == START)
+	{
+		lem_in_data->start = room;
+		ft_get_set_states()[0] = 1;
+	}
+	else if (*last_attr == END)
+	{
+		lem_in_data->end = room;
+		ft_get_set_states()[1] = 1;
+	}
 	*last_attr = NORMAL;
 	lem_in_data->room_nbr++;
 	return (1);

@@ -6,7 +6,7 @@
 /*   By: sclolus <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/18 05:38:27 by sclolus           #+#    #+#             */
-/*   Updated: 2017/08/18 05:49:56 by sclolus          ###   ########.fr       */
+/*   Updated: 2017/09/01 14:28:28 by sclolus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ inline static void		ft_print_path(t_solve_stack *stack, int32_t nbr
 }
 
 inline static void		ft_print_stack(t_lem_in_data *lem_in_data
-							, t_solve_stack *stack, uint32_t index)
+							, t_solve_stack *stack, uint64_t index)
 {
 	uint32_t	lem_nbr;
 	uint32_t	i;
@@ -70,7 +70,7 @@ inline static void		ft_print_stack(t_lem_in_data *lem_in_data
 }
 
 void					ft_put_solution(t_lem_in_data *lem_in_data
-						, t_solve_stack *stack, uint32_t index)
+						, t_solve_stack *stack, uint64_t index)
 {
 	ft_put_lines(lem_in_data->lines);
 	ft_print_stack(lem_in_data, stack, index + 1);
