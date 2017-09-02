@@ -6,7 +6,7 @@
 /*   By: sclolus <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/25 13:52:30 by sclolus           #+#    #+#             */
-/*   Updated: 2017/09/02 11:50:39 by sclolus          ###   ########.fr       */
+/*   Updated: 2017/09/02 14:09:16 by sclolus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,24 @@ typedef struct	s_room
 	uint64_t		heap_index;
 }				t_room;
 
+typedef struct	s_flags8
+{
+	char	bits0 : 1;
+	char	bits1 : 1;
+	char	quiet : 1;
+	char	bits3 : 1;
+	char	bits4 : 1;
+	char	bits5 : 1;
+	char	bits6 : 1;
+	char	bits7 : 1;
+}				t_flags8;
+
+typedef union	u_lem_flags
+{
+	t_flags8	bits;
+	char		flags;
+}				t_lem_flags;
+
 typedef struct	s_lem_in_data
 {
 	t_mem_block *data;
@@ -69,6 +87,8 @@ typedef struct	s_lem_in_data
 	t_room		*end;
 	uint32_t	room_nbr;
 	uint32_t	lem_nbr;
+	t_lem_flags	flags;
+	char		pad[7];
 }				t_lem_in_data;
 
 /*
@@ -110,6 +130,15 @@ t_lem_in_data	*ft_parse(void);
 t_parsing_case	ft_get_case(char *line, t_parsing_case last_case);
 
 /*
+** Flags parsing
+*/
+
+# define NORETURN __attribute__((noreturn)) void
+
+t_lem_flags		ft_parse_flags(char *flags);
+NORETURN		ft_flags_usage(char invalid_flag);
+
+/*
 ** I hate the norme for this
 */
 
@@ -148,8 +177,8 @@ typedef struct	s_solve_stack
 void			ft_solve(t_lem_in_data *lem_in_data);
 void			ft_dijsktra(t_lem_in_data *lem_in_data);
 void			ft_put_lines(t_mem_block *lines);
-void			ft_put_solution(t_lem_in_data *lem_in_data, t_solve_stack *stack
-								, uint64_t index) __attribute__((noreturn));
+NORETURN		ft_put_solution(t_lem_in_data *lem_in_data, t_solve_stack *stack
+								, uint64_t index);
 
 /*
 ** Mem_block handling
@@ -169,4 +198,7 @@ t_mem_block		*ft_create_mem_block(uint64_t capacity);
 # define INVALID_MEM_CAPACITY "Invalid size provided to ft_create_mem_block()"
 # define MALLOC_FAILURE "malloc() failed due to insufficient ressources left"
 # define LEM_IN_ERR "ERROR"
+# define ERR_INVALID_FLAG "Invalid flags: "
+# define FLAG_USAGE "Supported flags are: -v, -q, -d"
+# define INVALID_FLAGS_FORMAT "Invalid flag format: '-[flags]'"
 #endif

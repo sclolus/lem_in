@@ -6,7 +6,7 @@
 /*   By: sclolus <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/18 05:38:27 by sclolus           #+#    #+#             */
-/*   Updated: 2017/09/01 14:28:28 by sclolus          ###   ########.fr       */
+/*   Updated: 2017/09/02 14:08:50 by sclolus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,8 @@ inline static void		ft_print_stack(t_lem_in_data *lem_in_data
 void					ft_put_solution(t_lem_in_data *lem_in_data
 						, t_solve_stack *stack, uint64_t index)
 {
-	ft_put_lines(lem_in_data->lines);
+	if (!lem_in_data->flags.bits.quiet)
+		ft_put_lines(lem_in_data->lines);
 	ft_print_stack(lem_in_data, stack, index + 1);
 	exit(EXIT_SUCCESS);
 }

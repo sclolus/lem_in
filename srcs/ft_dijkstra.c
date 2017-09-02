@@ -6,26 +6,11 @@
 /*   By: sclolus <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/31 21:19:38 by sclolus           #+#    #+#             */
-/*   Updated: 2017/09/01 15:03:08 by sclolus          ###   ########.fr       */
+/*   Updated: 2017/09/02 13:20:28 by sclolus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
-# include <stdio.h> //
-
-static void	ft_put_heap(t_heap *heap)
-{
-	uint64_t	i;
-
-	i = 1;
-	while (i < heap->i)
-	{
-		if (((t_room**)heap->buffer)[i]->heap_index != i)
-			ft_error_exit(1, (char*[]){"FAILED"}, EXIT_FAILURE);
-		i++;
-	}
-
-}
 
 static inline void	ft_make_graph_heap(t_heap *graph_heap, t_room *start
 									, t_lem_in_data *lem_in_data)
@@ -64,7 +49,7 @@ static inline void	ft_update_neighbour_distances(t_heap *heap, t_room *room)
 	distance = room->distance + 1;
 	while (i * sizeof(t_room*) < tmp->offset)
 	{
-		if (!(*((t_room**)tmp->block + i))->used && distance < (*((t_room**)tmp->block + i))->distance)
+		if (!(*((t_room**)tmp->block + i))->used &&distance < (*((t_room**)tmp->block + i))->distance)
 		{
 			(*((t_room**)tmp->block + i))->distance = distance;
 			(*((t_room**)tmp->block + i))->shortest = room;
@@ -101,23 +86,18 @@ static inline t_solve_stack	*ft_make_solve_stack(t_lem_in_data *data)
 void	__attribute__((noreturn)) ft_dijsktra(t_lem_in_data *lem_in_data)
 {
 	t_solve_stack	*stack;
-	t_heap	*solve_heap;
-	t_heap	*graph_heap;
-	t_room	*start;
-	t_room	*tmp;
+	t_heap			*graph_heap;
+	t_room			*start;
+	t_room			*tmp;
 
-	solve_heap = ft_create_heap(sizeof(t_room*), lem_in_data->room_nbr);
 	graph_heap = ft_create_heap(sizeof(t_room*), lem_in_data->room_nbr);
 	start = lem_in_data->start;
 	ft_make_graph_heap(graph_heap, start, lem_in_data);
-	t_room *test;
-	test = NULL;
-	(void)ft_put_heap;
 	while (graph_heap->i > 1)
 	{
 		tmp = ((t_room**)graph_heap->buffer)[1];
-		if (tmp->attribute == END && (test = tmp))
-			break ;
+/* 		if (tmp->attribute == END) */
+/* 			break ; */
 		ft_min_heap_remove_elem(graph_heap);
 		tmp->used = 1;
 		ft_update_neighbour_distances(graph_heap, tmp);

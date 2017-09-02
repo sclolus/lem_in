@@ -6,7 +6,7 @@
 /*   By: sclolus <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/04 11:35:25 by sclolus           #+#    #+#             */
-/*   Updated: 2017/07/26 14:20:19 by sclolus          ###   ########.fr       */
+/*   Updated: 2017/09/02 13:49:10 by sclolus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,7 +146,9 @@ char			*ft_get_file_content(char *filename);
 # define ERR_GET_FILE_CONTENT_MALLOC "malloc() failed in get_file_content()"
 # define ERR_FILE_OPEN "Failed to open file: "
 
+# define NORETURN __attribute__((noreturn)) void
+
 int32_t			ft_error(uint32_t n, char **str, int32_t return_status);
-void			ft_error_exit(uint32_t n, char **str, int32_t exit_status);
+NORETURN		ft_error_exit(uint32_t n, char **str, int32_t exit_status);
 
 #endif
