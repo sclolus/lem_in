@@ -6,7 +6,7 @@
 /*   By: sclolus <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/25 13:52:30 by sclolus           #+#    #+#             */
-/*   Updated: 2017/09/01 14:28:40 by sclolus          ###   ########.fr       */
+/*   Updated: 2017/09/02 11:50:39 by sclolus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,8 +143,6 @@ void			ft_check_integrity(t_lem_in_data *lem_in_data);
 typedef struct	s_solve_stack
 {
 	t_room		*room;
-/* 	uint32_t	tube_index; */
-/* 	char		pad[4]; */
 }				t_solve_stack;
 
 void			ft_solve(t_lem_in_data *lem_in_data);
