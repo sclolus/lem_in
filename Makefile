@@ -23,12 +23,11 @@ SRC= srcs/main.c \
 	srcs/heap/ft_make_heap.c \
 	srcs/heap/ft_percolate_down.c \
 	srcs/heap/ft_percolate_up.c
-#	srcs/ft_solve.c \
 
 OBJ= $(SRC:.c=.o)
 HDR_PATH= ./libft/includes/
 CC= gcc
-CC_FLAGS= -Ofast -v -Weverything -Wall -Werror -Wextra  -g3 -fsanitize=address -fsanitize-blacklist=my_ignores.txt
+CC_FLAGS= -Ofast -v -Weverything -Wall -Werror -Wextra  #-g3 -fsanitize=address -fsanitize-blacklist=my_ignores.txt
 #VPATH=./srcs:./obj:./includes/
 
 all: submodule $(NAME)

@@ -6,7 +6,7 @@
 /*   By: sclolus <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/10 05:13:25 by sclolus           #+#    #+#             */
-/*   Updated: 2017/09/01 13:14:18 by sclolus          ###   ########.fr       */
+/*   Updated: 2017/09/02 11:43:59 by sclolus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ int32_t					ft_get_new_tube(char *line, t_lem_in_data *lem_in_data)
 	line[len] = '\0';
 	if (!(tab[0] = ft_find_room(line, lem_in_data->data)))
 		return (0);
+	line[len] = '-';
 	line += len + 1;
 	len = ft_get_new_tube_name_len(line);
 	line[len] = '\0';
