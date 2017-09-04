@@ -6,7 +6,7 @@
 /*   By: sclolus <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/10 03:50:38 by sclolus           #+#    #+#             */
-/*   Updated: 2017/09/02 14:01:12 by sclolus          ###   ########.fr       */
+/*   Updated: 2017/09/04 19:09:04 by sclolus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ int			main(int argc, char **argv)
 	lem_in_data = ft_parse();
 	lem_in_data->flags = flags;
 	ft_check_integrity(lem_in_data);
-	ft_dijsktra(lem_in_data);
-	ft_putendl_fd(LEM_IN_ERR, 2);
-	return (0);
+	if (flags.bits.distance_algo)
+		ft_dijsktra_distance(lem_in_data);
+	else
+		ft_dijsktra(lem_in_data);
 }

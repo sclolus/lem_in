@@ -6,7 +6,7 @@
 /*   By: sclolus <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/10 03:51:49 by sclolus           #+#    #+#             */
-/*   Updated: 2017/09/01 12:44:18 by sclolus          ###   ########.fr       */
+/*   Updated: 2017/09/03 20:43:48 by sclolus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ t_lem_in_data		*ft_parse(void)
 	t_parsing_case					last_case;
 	t_parsing_case					current_case;
 
-	lem_in_data.data = ft_create_mem_block(DEFAULT_MEM_BLOCK_SIZE);
-	lem_in_data.lines = ft_create_mem_block(DEFAULT_MEM_BLOCK_SIZE);
+	lem_in_data.data = ft_create_mem_block(DEFAULT_MEM_BLOCK_ROOM_SIZE);
+	lem_in_data.lines = ft_create_mem_block(DEFAULT_MEM_BLOCK_LINES_SIZE);
 	line = NULL;
 	last_case = ERROR;
 	while (get_next_line(0, &line) > 0)

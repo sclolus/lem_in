@@ -6,7 +6,7 @@
 /*   By: sclolus <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/02 13:31:46 by sclolus           #+#    #+#             */
-/*   Updated: 2017/09/02 14:05:44 by sclolus          ###   ########.fr       */
+/*   Updated: 2017/09/03 19:38:49 by sclolus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ NORETURN			ft_flags_usage(char invalid_flag)
 
 inline t_lem_flags	ft_parse_flags(char *argv)
 {
-	static char	flags_char[] = {'d', 'v', 'q'};
+	static char	flags_char[] = {'d', 'v', 'q', 's'};
 	t_lem_flags	flags;
 	uint32_t	i;
 	uint32_t	u;

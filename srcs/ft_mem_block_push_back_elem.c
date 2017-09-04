@@ -6,7 +6,7 @@
 /*   By: sclolus <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/25 14:04:28 by sclolus           #+#    #+#             */
-/*   Updated: 2017/09/01 14:46:11 by sclolus          ###   ########.fr       */
+/*   Updated: 2017/09/03 20:21:15 by sclolus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	*ft_mem_block_push_back_elem(t_mem_block *mem_block
 	}
 	else
 	{
-		mem_block->next = ft_create_mem_block(DEFAULT_MEM_BLOCK_SIZE);
+		mem_block->next = ft_create_mem_block(mem_block->capacity * 2);
 		return (ft_mem_block_push_back_elem(mem_block->next, elem, size));
 	}
 	return ((unsigned char*)mem_block->block + mem_block->offset - size);

@@ -3,6 +3,7 @@ SRC= srcs/main.c \
 	srcs/ft_put_lines.c \
 	srcs/ft_put_solution.c \
 	srcs/ft_dijkstra.c \
+	srcs/ft_dijkstra_distance.c \
 	srcs/parsing/ft_parse.c \
 	srcs/parsing/ft_parse_flags.c \
 	srcs/parsing/ft_get_lem_nbr.c \
@@ -28,7 +29,7 @@ SRC= srcs/main.c \
 OBJ= $(SRC:.c=.o)
 HDR_PATH= ./libft/includes/
 CC= gcc
-CC_FLAGS= -Ofast -v -Weverything -Wall -Werror -Wextra  -g3 -fsanitize=address -fsanitize-blacklist=my_ignores.txt
+CC_FLAGS= -Ofast -v -Weverything -Wall -Wextra  -g3 -fsanitize=address -fsanitize-blacklist=my_ignores.txt #-Werror
 #VPATH=./srcs:./obj:./includes/
 
 all: submodule $(NAME)

@@ -6,7 +6,7 @@
 /*   By: sclolus <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/25 13:52:30 by sclolus           #+#    #+#             */
-/*   Updated: 2017/09/02 14:09:16 by sclolus          ###   ########.fr       */
+/*   Updated: 2017/09/04 21:39:04 by sclolus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,14 +45,19 @@ typedef struct	s_mem_block
 	struct s_mem_block	*next;
 }				t_mem_block;
 
+typedef struct	s_flow
+{
+	uint32_t	capacity;
+	uint32_t	flow;
+}				t_flow;
+
 typedef struct	s_room
 {
 	char			*name;
 	uint32_t		len;
-	uint32_t		capacity;
+	t_flow			flow;
 	uint32_t		nbr_tube;
 	t_coord			coords;
-	char			pad[4];
 	uint64_t		distance;
 	t_attribute		attribute;
 	uint32_t		used;
@@ -63,10 +68,10 @@ typedef struct	s_room
 
 typedef struct	s_flags8
 {
-	char	bits0 : 1;
+	char	distance_algo : 1;
 	char	bits1 : 1;
 	char	quiet : 1;
-	char	bits3 : 1;
+	char	show_path : 1;
 	char	bits4 : 1;
 	char	bits5 : 1;
 	char	bits6 : 1;
@@ -134,6 +139,7 @@ t_parsing_case	ft_get_case(char *line, t_parsing_case last_case);
 */
 
 # define NORETURN __attribute__((noreturn)) void
+# define LEM_SHOW_PATH "===============Path===============\n"
 
 t_lem_flags		ft_parse_flags(char *flags);
 NORETURN		ft_flags_usage(char invalid_flag);
@@ -172,10 +178,12 @@ void			ft_check_integrity(t_lem_in_data *lem_in_data);
 typedef struct	s_solve_stack
 {
 	t_room		*room;
+	uint64_t	index;
 }				t_solve_stack;
 
 void			ft_solve(t_lem_in_data *lem_in_data);
-void			ft_dijsktra(t_lem_in_data *lem_in_data);
+NORETURN		ft_dijsktra(t_lem_in_data *lem_in_data);
+NORETURN		ft_dijsktra_distance(t_lem_in_data *lem_in_data);
 void			ft_put_lines(t_mem_block *lines);
 NORETURN		ft_put_solution(t_lem_in_data *lem_in_data, t_solve_stack *stack
 								, uint64_t index);
@@ -185,7 +193,13 @@ NORETURN		ft_put_solution(t_lem_in_data *lem_in_data, t_solve_stack *stack
 */
 
 # define MEM_BLOCK_LIMIT 256
-# define DEFAULT_MEM_BLOCK_SIZE (sizeof(t_room) * sizeof(t_room*) * 150)
+# define DEFAULT_MEM_BLOCK_SIZE (sizeof(t_room) * sizeof(t_room*) * 50)
+# define DEFAULT_MEM_BLOCK_TUBE_SIZE (sizeof(t_room*) * 10)
+# define DEFAULT_MEM_BLOCK_ROOM_SIZE (sizeof(t_room) * 10000)
+# define DEFAULT_MEM_BLOCK_LINES_SIZE (sizeof(char*) * 100000)
+/* # define DEFAULT_MEM_BLOCK_TUBE_SIZE (sizeof(t_room*) * 10) */
+/* # define DEFAULT_MEM_BLOCK_ROOM_SIZE (sizeof(t_room) * 256) */
+/* # define DEFAULT_MEM_BLOCK_LINES_SIZE (sizeof(char*) * 256) */
 
 void			*ft_mem_block_push_back_elem(t_mem_block *mem_block
 									, void *elem, uint32_t size);
@@ -199,6 +213,6 @@ t_mem_block		*ft_create_mem_block(uint64_t capacity);
 # define MALLOC_FAILURE "malloc() failed due to insufficient ressources left"
 # define LEM_IN_ERR "ERROR"
 # define ERR_INVALID_FLAG "Invalid flags: "
-# define FLAG_USAGE "Supported flags are: -v, -q, -d"
+# define FLAG_USAGE "Supported flags are: -v, -q, -d, -s"
 # define INVALID_FLAGS_FORMAT "Invalid flag format: '-[flags]'"
 #endif

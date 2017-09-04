@@ -6,7 +6,7 @@
 /*   By: sclolus <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/25 13:56:03 by sclolus           #+#    #+#             */
-/*   Updated: 2017/07/25 15:30:35 by sclolus          ###   ########.fr       */
+/*   Updated: 2017/09/03 20:16:10 by sclolus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,9 @@ t_mem_block	*ft_create_mem_block(uint64_t capacity)
 {
 	t_mem_block	*mem_block;
 
-	if (capacity % sizeof(t_room) || capacity % sizeof(t_room*))
-		ft_error_exit(1, (char*[]){INVALID_MEM_CAPACITY}, EXIT_FAILURE);
+/* 	if (capacity % sizeof(t_room) || capacity % sizeof(t_room*) */
+/* 		|| capacity % sizeof(char*)) */
+/* 		ft_error_exit(1, (char*[]){INVALID_MEM_CAPACITY}, EXIT_FAILURE); */
 	while (!(mem_block = (t_mem_block*)ft_memalloc(capacity
 			+ sizeof(t_mem_block))))
 	{
