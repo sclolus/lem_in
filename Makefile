@@ -2,6 +2,8 @@ NAME= lem-in
 SRC= srcs/main.c \
 	srcs/ft_put_lines.c \
 	srcs/ft_put_solution.c \
+	srcs/ft_multi_path.c \
+	srcs/ft_put_multi_path.c \
 	srcs/ft_dijkstra.c \
 	srcs/ft_dijkstra_distance.c \
 	srcs/parsing/ft_parse.c \

@@ -6,7 +6,7 @@
 /*   By: sclolus <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/31 21:19:38 by sclolus           #+#    #+#             */
-/*   Updated: 2017/09/04 19:13:35 by sclolus          ###   ########.fr       */
+/*   Updated: 2017/09/05 06:59:28 by sclolus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,8 @@ void	__attribute__((noreturn)) ft_dijsktra(t_lem_in_data *lem_in_data)
 	t_room			*tmp;
 
 	graph_heap = ft_create_heap(sizeof(t_room*), lem_in_data->room_nbr);
-	ft_swap_target(lem_in_data);
+	(void)ft_swap_target;
+//	ft_swap_target(lem_in_data);
 	start = lem_in_data->start;
 	ft_make_graph_heap(graph_heap, start, lem_in_data);
 	while (graph_heap->i > 1)

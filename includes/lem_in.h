@@ -6,7 +6,7 @@
 /*   By: sclolus <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/25 13:52:30 by sclolus           #+#    #+#             */
-/*   Updated: 2017/09/04 21:39:04 by sclolus          ###   ########.fr       */
+/*   Updated: 2017/09/05 06:44:09 by sclolus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,13 @@ typedef struct	s_lem_in_data
 	t_lem_flags	flags;
 	char		pad[7];
 }				t_lem_in_data;
+
+typedef struct	s_lem
+{
+	t_room		*room;
+	uint32_t	index;
+	char		pad[4];
+}				t_lem;
 
 /*
 ** Parsing
@@ -187,6 +194,8 @@ NORETURN		ft_dijsktra_distance(t_lem_in_data *lem_in_data);
 void			ft_put_lines(t_mem_block *lines);
 NORETURN		ft_put_solution(t_lem_in_data *lem_in_data, t_solve_stack *stack
 								, uint64_t index);
+void			ft_multi_path(t_lem_in_data *lem_in_data);
+void			ft_put_multi_path(t_lem_in_data *lem_in_data);
 
 /*
 ** Mem_block handling
