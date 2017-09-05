@@ -6,7 +6,7 @@
 /*   By: sclolus <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/05 04:39:40 by sclolus           #+#    #+#             */
-/*   Updated: 2017/09/05 06:44:04 by sclolus          ###   ########.fr       */
+/*   Updated: 2017/09/05 11:48:32 by sclolus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,36 @@
 inline static t_room	*ft_get_lem_path(t_lem *lem)
 {
 	t_mem_block		*tmp;
+	t_room			*next;
 	uint64_t		i;
+	uint64_t		distance;
+
 
 	tmp = lem->room->tubes;
+	distance = ~0UL;
+	next = NULL;
 	i = 0;
+//	printf("-----Start------ room->distance: %u\n", lem->room->distance);
 	while (i * sizeof(t_room*) < tmp->offset)
 	{
-		if ((*((t_room**)tmp->block + i))->flow.flow && (*((t_room**)tmp->block + i))->flow.capacity)
-			return ((*((t_room**)tmp->block + i)));
+//		printf("%s: capacity: %u, flow: %u, distance: %llu\n", (*((t_room**)tmp->block + i))->name, (*((t_room**)tmp->block + i))->flow.capacity, (*((t_room**)tmp->block + i))->flow.flow, (*((t_room**)tmp->block + i))->distance);
+		if ((*((t_room**)tmp->block + i))->distance < distance &&
+			(*((t_room**)tmp->block + i))->flow.flow && (*((t_room**)tmp->block + i))->flow.capacity)
+		{
+			distance = (*((t_room**)tmp->block + i))->distance;
+			next = (*((t_room**)tmp->block + i));
+//			return ((*((t_room**)tmp->block + i)));
+		}
 		i++;
 		if (i * sizeof(t_room*) >= tmp->offset && tmp->next && !(i = 0))
 			tmp = tmp->next;
 	}
-	return (NULL);
+//			printf("selected ----> %s: capacity: %u\n", (*((t_room**)tmp->block + i))->name, (*((t_room**)tmp->block + i))->flow.capacity);
+/* 	if (next) */
+/* 		printf("selected ----> %s: capacity: %u\n", next->name, next->flow.capacity); */
+/* 	else */
+/* 		printf("lem->index: %llu is blocked \n", lem->index); */
+	return (next);
 }
 
 inline static void		ft_put_lem_move(t_lem *lem)

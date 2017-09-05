@@ -6,7 +6,7 @@
 /*   By: sclolus <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/31 21:19:38 by sclolus           #+#    #+#             */
-/*   Updated: 2017/09/05 06:59:28 by sclolus          ###   ########.fr       */
+/*   Updated: 2017/09/05 09:35:33 by sclolus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static inline void	ft_make_graph_heap(t_heap *graph_heap, t_room *start
 	start->distance = 0;
 	while (i * sizeof(t_room) < tmp->offset)
 	{
-		if (((t_room*)tmp->block + i)->attribute != START)
+		if (((t_room*)tmp->block + i) != start)
 		{
 			((t_room**)graph_heap->buffer)[graph_heap->i] = ((t_room*)tmp->block
 														+ i);
@@ -62,27 +62,6 @@ static inline void	ft_update_neighbour_distances(t_heap *heap, t_room *room)
 	}
 }
 
-static inline t_solve_stack	*ft_make_solve_stack(t_lem_in_data *data)
-{
-	t_solve_stack	*stack;
-	t_room			*current_room;
-	uint64_t		i;
-
-	if ((i = (data->end->distance)) == ~0U)
-		ft_error_exit(1, (char*[]){LEM_IN_ERR}, EXIT_FAILURE);
-	if (!(stack = (t_solve_stack*)ft_memalloc(sizeof(t_solve_stack)
-						* data->room_nbr)))
-		ft_error_exit(1, (char*[]){MALLOC_FAILURE}, EXIT_FAILURE);
-	stack[0].room = data->start;
-	current_room = data->end;
-	while (i > 0)
-	{
-		stack[i].room = current_room;
-		current_room = current_room->shortest;
-		i--;
-	}
-	return (stack);
-}
 
 static void	ft_swap_target(t_lem_in_data *lem_in_data)
 {
@@ -94,27 +73,20 @@ static void	ft_swap_target(t_lem_in_data *lem_in_data)
 	lem_in_data->start = tmp;
 }
 
-void	__attribute__((noreturn)) ft_dijsktra(t_lem_in_data *lem_in_data)
+void		ft_dijkstra(t_lem_in_data *lem_in_data, t_room *start)
 {
-	t_solve_stack	*stack;
 	t_heap			*graph_heap;
-	t_room			*start;
 	t_room			*tmp;
 
 	graph_heap = ft_create_heap(sizeof(t_room*), lem_in_data->room_nbr);
 	(void)ft_swap_target;
-//	ft_swap_target(lem_in_data);
-	start = lem_in_data->start;
 	ft_make_graph_heap(graph_heap, start, lem_in_data);
 	while (graph_heap->i > 1)
 	{
 		tmp = ((t_room**)graph_heap->buffer)[1];
-/* 		if (tmp->attribute == START) */
-/* 			break ; */
 		ft_min_heap_remove_elem(graph_heap);
 		tmp->used = 1;
 		ft_update_neighbour_distances(graph_heap, tmp);
 	}
-	stack = ft_make_solve_stack(lem_in_data);
-	ft_put_solution(lem_in_data, stack, lem_in_data->end->distance);
+	ft_free_heap(graph_heap);
 }

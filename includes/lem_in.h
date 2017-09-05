@@ -6,7 +6,7 @@
 /*   By: sclolus <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/25 13:52:30 by sclolus           #+#    #+#             */
-/*   Updated: 2017/09/05 06:44:09 by sclolus          ###   ########.fr       */
+/*   Updated: 2017/09/05 09:59:19 by sclolus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ typedef struct	s_flags8
 	char	bits1 : 1;
 	char	quiet : 1;
 	char	show_path : 1;
-	char	bits4 : 1;
+	char	multi_path : 1;
 	char	bits5 : 1;
 	char	bits6 : 1;
 	char	bits7 : 1;
@@ -189,13 +189,15 @@ typedef struct	s_solve_stack
 }				t_solve_stack;
 
 void			ft_solve(t_lem_in_data *lem_in_data);
-NORETURN		ft_dijsktra(t_lem_in_data *lem_in_data);
-NORETURN		ft_dijsktra_distance(t_lem_in_data *lem_in_data);
+void			ft_dijkstra(t_lem_in_data *lem_in_data, t_room *start);
+NORETURN		ft_dijkstra_distance(t_lem_in_data *lem_in_data);
 void			ft_put_lines(t_mem_block *lines);
 NORETURN		ft_put_solution(t_lem_in_data *lem_in_data, t_solve_stack *stack
 								, uint64_t index);
 void			ft_multi_path(t_lem_in_data *lem_in_data);
 void			ft_put_multi_path(t_lem_in_data *lem_in_data);
+
+void			ft_reset_dijkstra_values(t_mem_block *data, uint32_t value);
 
 /*
 ** Mem_block handling

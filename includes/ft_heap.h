@@ -6,7 +6,7 @@
 /*   By: sclolus <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/30 23:22:51 by sclolus           #+#    #+#             */
-/*   Updated: 2017/08/31 23:30:20 by sclolus          ###   ########.fr       */
+/*   Updated: 2017/09/05 09:18:15 by sclolus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,12 @@ void	ft_min_heap_percolate_down(t_heap *heap, uint64_t index);
 void	ft_max_heap_percolate_down(t_heap *heap, uint64_t index);
 void	ft_make_max_heap(t_heap *heap, void *elems, uint32_t nbr_elem);
 void	ft_make_min_heap(t_heap *heap, void *elems, uint32_t nbr_elem);
+
+/*
+** Free functions
+*/
+
+void	ft_free_heap(t_heap *heap);
 
 /*
 ** Error Handling

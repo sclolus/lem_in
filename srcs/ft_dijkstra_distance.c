@@ -6,7 +6,7 @@
 /*   By: sclolus <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/02 16:04:23 by sclolus           #+#    #+#             */
-/*   Updated: 2017/09/02 16:43:01 by sclolus          ###   ########.fr       */
+/*   Updated: 2017/09/05 09:36:08 by sclolus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ static inline t_solve_stack	*ft_make_solve_stack(t_lem_in_data *data)
 	return (stack);
 }
 
-void	__attribute__((noreturn)) ft_dijsktra_distance(t_lem_in_data *lem_in_data)
+void	__attribute__((noreturn)) ft_dijkstra_distance(t_lem_in_data *lem_in_data)
 {
 	t_solve_stack	*stack;
 	t_heap			*graph_heap;

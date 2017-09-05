@@ -22,6 +22,7 @@ SRC= srcs/main.c \
 	srcs/ft_create_mem_block.c \
 	srcs/ft_mem_block_push_back_elem.c \
 	srcs/heap/ft_create_heap.c \
+	srcs/heap/ft_free_heap.c \
 	srcs/heap/ft_heap_add_elem.c \
 	srcs/heap/ft_heap_remove_elem.c \
 	srcs/heap/ft_make_heap.c \
