@@ -6,7 +6,7 @@
 /*   By: sclolus <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/05 04:37:45 by sclolus           #+#    #+#             */
-/*   Updated: 2017/09/06 04:17:13 by sclolus          ###   ########.fr       */
+/*   Updated: 2017/09/06 11:22:02 by sclolus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ inline static t_room	*ft_get_next_available_room(t_solve_stack *stack)
 	while (i * sizeof(t_room*) < tmp->offset)
 	{
 		index++;
-		if (/* (*((t_room**)tmp->block + i))->distance < stack[0].room->distance &&  */(*((t_room**)tmp->block + i))->distance < distance
+		if ((*((t_room**)tmp->block + i))->distance < distance
 			&& (*((t_room**)tmp->block + i))->flow.capacity > (*((t_room**)tmp->block + i))->flow.flow && (*((t_room**)tmp->block + i))->used == 1)
 		{
 			next = *((t_room**)tmp->block + i);
@@ -201,6 +201,8 @@ inline static void		ft_add_one_path(t_list **lst, t_solve_stack *stack, uint32_t
 {
 	t_path		*path;
 	t_list		*tmp;
+	t_list		*prev;
+	t_list		*current;
 	uint32_t	i;
 
 	if (!(path = (t_path*)malloc(sizeof(t_path) + sizeof(t_room**) * path_len))
@@ -208,14 +210,30 @@ inline static void		ft_add_one_path(t_list **lst, t_solve_stack *stack, uint32_t
 		ft_error_exit(1, (char*[]){MALLOC_FAILURE}, EXIT_FAILURE);
 	i = 0;
 	path->path_len = path_len;
-	path->rooms = (unsigned char *)path + sizeof(t_path);
+	path->rooms = (t_room**)((unsigned char *)path + sizeof(t_path));
 	while (i < path_len)
 	{
 		path->rooms[i] = stack[path_len - i - 1].room;
 		i++;
 	}
 	tmp->content = path;
-	ft_lstadd(lst, tmp);
+	prev = NULL;
+	current = *lst;
+	while (current && ((t_path*)tmp->content)->path_len > ((t_path*)current->content)->path_len)
+	{
+		prev = current;
+		current = current->next;
+	}
+	if (prev)
+	{
+		prev->next = tmp;
+		tmp->next = current;
+	}
+	else
+	{
+		*lst = tmp;
+		tmp->next = current;
+	}
 }
 
 void		ft_multi_path(t_lem_in_data *lem_in_data)
@@ -244,10 +262,10 @@ void		ft_multi_path(t_lem_in_data *lem_in_data)
 	{
 		if (!(len_path = ft_make_path_stack(stack, distance_plage)))
 		{
-			distance_plage++;
-			if (distance_plage >= lem_in_data->room_nbr)
+//			distance_plage++;
+//			if (distance_plage >= lem_in_data->room_nbr)
 				break;
-			continue ;
+//			continue ;
 		}
 		(void)ft_put_stack;
 		ft_put_stack(stack);
