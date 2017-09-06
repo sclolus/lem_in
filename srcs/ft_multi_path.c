@@ -6,7 +6,7 @@
 /*   By: sclolus <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/05 04:37:45 by sclolus           #+#    #+#             */
-/*   Updated: 2017/09/05 12:03:03 by sclolus          ###   ########.fr       */
+/*   Updated: 2017/09/06 04:17:13 by sclolus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,10 +147,9 @@ inline static uint32_t	ft_get_max_flow(t_solve_stack *stack)
 	return (max_flow);
 }
 
-inline static void		ft_add_flow_to_path(t_solve_stack *stack, uint32_t flow)
+inline static void		ft_add_flow_to_path(t_solve_stack *stack, uint32_t flow, uint32_t *lem_nbr)
 {
 	uint32_t	i;
-	uint32_t	u;
 
 	i = 1;
 	stack[0].room->flow.flow += flow;
@@ -164,12 +163,10 @@ inline static void		ft_add_flow_to_path(t_solve_stack *stack, uint32_t flow)
 	}
 	stack[i - 1].room->used = 1; // gros bug on frere sur simple
 	stack[0].room->used = 1;
-/* 	u = i - 1; */
-/* 	while (i > 0) */
-/* 	{ */
-/* 		i--; */
-/* 		stack[i].room->distance = u - i; */
-/* 	} */
+	if (*lem_nbr < flow || !flow)
+		*lem_nbr = 0;
+	else
+		*lem_nbr -= flow;
 }
 
 inline static void		ft_put_stack(t_solve_stack *stack)
@@ -200,14 +197,37 @@ inline static void		ft_put_capacities(t_mem_block *data)
 	}
 }
 
+inline static void		ft_add_one_path(t_list **lst, t_solve_stack *stack, uint32_t path_len)
+{
+	t_path		*path;
+	t_list		*tmp;
+	uint32_t	i;
+
+	if (!(path = (t_path*)malloc(sizeof(t_path) + sizeof(t_room**) * path_len))
+		|| !(tmp = ft_lstnew(NULL, 0)))
+		ft_error_exit(1, (char*[]){MALLOC_FAILURE}, EXIT_FAILURE);
+	i = 0;
+	path->path_len = path_len;
+	path->rooms = (unsigned char *)path + sizeof(t_path);
+	while (i < path_len)
+	{
+		path->rooms[i] = stack[path_len - i - 1].room;
+		i++;
+	}
+	tmp->content = path;
+	ft_lstadd(lst, tmp);
+}
+
 void		ft_multi_path(t_lem_in_data *lem_in_data)
 {
+	t_list			*paths;
 	t_room			*room;
 	t_solve_stack	*stack;
 	uint32_t		lem_nbr;
 	uint32_t		flow;
 	uint32_t		distance_plage;
 	uint32_t		len_path;
+	uint32_t		nbr_path;
 
 	if (!(stack = (t_solve_stack*)ft_memalloc(sizeof(t_solve_stack)
 						* lem_in_data->room_nbr)))
@@ -218,6 +238,8 @@ void		ft_multi_path(t_lem_in_data *lem_in_data)
 	room = lem_in_data->end;
 	lem_nbr = lem_in_data->lem_nbr;
 	distance_plage = 0;
+	nbr_path = 0;
+	paths = NULL;
 	while (lem_nbr)
 	{
 		if (!(len_path = ft_make_path_stack(stack, distance_plage)))
@@ -229,15 +251,11 @@ void		ft_multi_path(t_lem_in_data *lem_in_data)
 		}
 		(void)ft_put_stack;
 		ft_put_stack(stack);
-		ft_add_flow_to_path(stack, (flow = ft_get_max_flow(stack)));
-		if (lem_nbr < flow || !flow)
-			lem_nbr = 0;
-		else
-			lem_nbr -= flow;
+		ft_add_flow_to_path(stack, (flow = ft_get_max_flow(stack)), &lem_nbr);
+		nbr_path++;
+		ft_add_one_path(&paths, stack, len_path);
 	}
-	ft_put_capacities(lem_in_data->data);
+//	ft_put_capacities(lem_in_data->data);
 	free(stack);
-	ft_reset_dijkstra_values(lem_in_data->data, 0);
-	ft_dijkstra(lem_in_data, lem_in_data->end);
-	ft_put_multi_path(lem_in_data);
+	ft_put_multi_path(lem_in_data, paths, nbr_path);
 }

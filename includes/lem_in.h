@@ -6,7 +6,7 @@
 /*   By: sclolus <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/25 13:52:30 by sclolus           #+#    #+#             */
-/*   Updated: 2017/09/05 09:59:19 by sclolus          ###   ########.fr       */
+/*   Updated: 2017/09/06 04:10:32 by sclolus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,8 +100,15 @@ typedef struct	s_lem
 {
 	t_room		*room;
 	uint32_t	index;
-	char		pad[4];
+	uint32_t	path_index;
+	uint32_t	lem_number;
 }				t_lem;
+
+typedef struct	s_path
+{
+	t_room		**rooms;
+	uint32_t	path_len;
+}				t_path;
 
 /*
 ** Parsing
@@ -195,7 +202,7 @@ void			ft_put_lines(t_mem_block *lines);
 NORETURN		ft_put_solution(t_lem_in_data *lem_in_data, t_solve_stack *stack
 								, uint64_t index);
 void			ft_multi_path(t_lem_in_data *lem_in_data);
-void			ft_put_multi_path(t_lem_in_data *lem_in_data);
+void			ft_put_multi_path(t_lem_in_data *lem_in_data, t_list *paths_list, uint32_t nbr_path);
 
 void			ft_reset_dijkstra_values(t_mem_block *data, uint32_t value);
 
