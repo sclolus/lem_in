@@ -6,7 +6,7 @@
 /*   By: sclolus <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/05 04:39:40 by sclolus           #+#    #+#             */
-/*   Updated: 2017/09/06 10:00:20 by sclolus          ###   ########.fr       */
+/*   Updated: 2017/09/08 04:10:50 by sclolus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -199,7 +199,7 @@ inline static void		ft_set_lems(t_lem *lems, t_lem_in_data *lem_in_data, t_path 
 			u = 0;
 			while (lem_nbr < lem_in_data->lem_nbr && u < paths[0]->path_len)
 			{
-				printf("Attributed lem: %u to path %u\n", lem_nbr + 1, i);
+//				printf("Attributed lem: %u to path %u\n", lem_nbr + 1, i);
 				lems[lem_nbr].room = lem_in_data->start;
 				lems[lem_nbr].index = 0;
 				lems[lem_nbr].lem_number = lem_nbr + 1;

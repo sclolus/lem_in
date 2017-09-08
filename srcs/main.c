@@ -6,7 +6,7 @@
 /*   By: sclolus <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/10 03:50:38 by sclolus           #+#    #+#             */
-/*   Updated: 2017/09/05 11:41:20 by sclolus          ###   ########.fr       */
+/*   Updated: 2017/09/08 04:20:11 by sclolus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static inline t_solve_stack	*ft_make_solve_stack(t_lem_in_data *data)
 	t_room			*current_room;
 	uint64_t		i;
 
-	if ((i = (data->end->distance)) == ~0U)
+	if ((i = (data->end->distance)) == ~0UL)
 		ft_error_exit(1, (char*[]){LEM_IN_ERR}, EXIT_FAILURE);
 	if (!(stack = (t_solve_stack*)ft_memalloc(sizeof(t_solve_stack)
 						* data->room_nbr)))

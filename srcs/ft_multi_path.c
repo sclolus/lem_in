@@ -6,7 +6,7 @@
 /*   By: sclolus <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/05 04:37:45 by sclolus           #+#    #+#             */
-/*   Updated: 2017/09/06 11:22:02 by sclolus          ###   ########.fr       */
+/*   Updated: 2017/09/08 04:21:40 by sclolus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -268,7 +268,7 @@ void		ft_multi_path(t_lem_in_data *lem_in_data)
 //			continue ;
 		}
 		(void)ft_put_stack;
-		ft_put_stack(stack);
+//		ft_put_stack(stack);
 		ft_add_flow_to_path(stack, (flow = ft_get_max_flow(stack)), &lem_nbr);
 		nbr_path++;
 		ft_add_one_path(&paths, stack, len_path);
