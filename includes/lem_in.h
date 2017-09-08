@@ -6,7 +6,7 @@
 /*   By: sclolus <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/25 13:52:30 by sclolus           #+#    #+#             */
-/*   Updated: 2017/09/06 04:10:32 by sclolus          ###   ########.fr       */
+/*   Updated: 2017/09/08 06:12:02 by sclolus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -202,7 +202,8 @@ void			ft_put_lines(t_mem_block *lines);
 NORETURN		ft_put_solution(t_lem_in_data *lem_in_data, t_solve_stack *stack
 								, uint64_t index);
 void			ft_multi_path(t_lem_in_data *lem_in_data);
-void			ft_put_multi_path(t_lem_in_data *lem_in_data, t_list *paths_list, uint32_t nbr_path);
+void			ft_put_multi_path(t_lem_in_data *lem_in_data
+								, t_list *paths_list, uint32_t nbr_path);
 
 void			ft_reset_dijkstra_values(t_mem_block *data, uint32_t value);
 
@@ -215,9 +216,6 @@ void			ft_reset_dijkstra_values(t_mem_block *data, uint32_t value);
 # define DEFAULT_MEM_BLOCK_TUBE_SIZE (sizeof(t_room*) * 10)
 # define DEFAULT_MEM_BLOCK_ROOM_SIZE (sizeof(t_room) * 10000)
 # define DEFAULT_MEM_BLOCK_LINES_SIZE (sizeof(char*) * 100000)
-/* # define DEFAULT_MEM_BLOCK_TUBE_SIZE (sizeof(t_room*) * 10) */
-/* # define DEFAULT_MEM_BLOCK_ROOM_SIZE (sizeof(t_room) * 256) */
-/* # define DEFAULT_MEM_BLOCK_LINES_SIZE (sizeof(char*) * 256) */
 
 void			*ft_mem_block_push_back_elem(t_mem_block *mem_block
 									, void *elem, uint32_t size);

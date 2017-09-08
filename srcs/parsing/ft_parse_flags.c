@@ -6,7 +6,7 @@
 /*   By: sclolus <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/02 13:31:46 by sclolus           #+#    #+#             */
-/*   Updated: 2017/09/05 09:59:08 by sclolus          ###   ########.fr       */
+/*   Updated: 2017/09/08 06:08:58 by sclolus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,7 @@ inline t_lem_flags	ft_parse_flags(char *argv)
 				flags.flags |= 1 << i;
 				break ;
 			}
-			i++;
-			if (i >= sizeof(flags_char) / sizeof(char))
+			if (++i >= sizeof(flags_char) / sizeof(char))
 				ft_flags_usage(argv[u]);
 		}
 		u++;

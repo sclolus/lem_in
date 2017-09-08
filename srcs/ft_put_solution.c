@@ -6,7 +6,7 @@
 /*   By: sclolus <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/18 05:38:27 by sclolus           #+#    #+#             */
-/*   Updated: 2017/09/08 04:17:30 by sclolus          ###   ########.fr       */
+/*   Updated: 2017/09/08 06:20:10 by sclolus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,5 +117,6 @@ void					ft_put_solution(t_lem_in_data *lem_in_data
 		ft_print_stack(lem_in_data, stack, index + 1);
 	if (lem_in_data->flags.bits.show_path)
 		ft_show_path(lem_in_data, stack, index + 1);
+	ft_static_put(NULL, 0, STATIC_PUT_FLUSH);
 	exit(EXIT_SUCCESS);
 }

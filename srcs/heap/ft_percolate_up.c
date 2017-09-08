@@ -6,7 +6,7 @@
 /*   By: sclolus <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/30 23:36:14 by sclolus           #+#    #+#             */
-/*   Updated: 2017/09/01 13:14:56 by sclolus          ###   ########.fr       */
+/*   Updated: 2017/09/08 06:10:15 by sclolus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ inline void	ft_min_heap_percolate_up(t_heap *heap, uint64_t index)
 
 	while (index > 1
 		&& (*((t_room **)heap->buffer + index))->distance
-		   < (*((t_room **)heap->buffer + (index >> 1)))->distance)
+		< (*((t_room **)heap->buffer + (index >> 1)))->distance)
 	{
 		tmp = *((t_room **)heap->buffer + (index >> 1));
 		*((t_room **)heap->buffer + (index >> 1)) =
