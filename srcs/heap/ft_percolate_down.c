@@ -6,7 +6,7 @@
 /*   By: sclolus <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/30 23:43:17 by sclolus           #+#    #+#             */
-/*   Updated: 2017/09/01 12:17:51 by sclolus          ###   ########.fr       */
+/*   Updated: 2017/09/08 07:37:44 by sclolus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ inline void	ft_max_heap_percolate_down(t_heap *heap, uint64_t index)
 		if ((index << 1) >= heap->i)
 			break ;
 		else if ((index << 1) + 1 >= heap->i)
-			to_swap = ((t_room **)heap->buffer + (new_index = (index << 1)));
+			to_swap = ((t_room **)heap->buffer
+					+ (new_index = (index << 1)));
 		else
 			to_swap = (*((t_room **)heap->buffer + (index << 1)))->distance
 				> (*((t_room **)heap->buffer + ((index << 1) + 1)))->distance
@@ -32,7 +33,7 @@ inline void	ft_max_heap_percolate_down(t_heap *heap, uint64_t index)
 				: ((t_room **)heap->buffer + (new_index = ((index << 1) + 1)));
 		if (!to_swap || (*to_swap)->distance > (*((t_room **)heap->buffer
 												+ (index)))->distance)
-			break;
+			break ;
 		tmp = *to_swap;
 		*to_swap = *((t_room **)heap->buffer + (index));
 		*((t_room **)heap->buffer + (index)) = tmp;
@@ -40,32 +41,38 @@ inline void	ft_max_heap_percolate_down(t_heap *heap, uint64_t index)
 	}
 }
 
+inline void	ft_heap_swap_percolate(t_room **to_swap, t_room **current)
+{
+	t_room	*tmp;
+
+	tmp = *to_swap;
+	*to_swap = *current;
+	*current = tmp;
+}
+
 inline void	ft_min_heap_percolate_down(t_heap *heap, uint64_t index)
 {
-	t_room		*tmp;
 	t_room		**to_swap;
 	uint64_t	new_index;
 
-	while (index < heap->i)
+	while (index < heap->i && !(to_swap = NULL))
 	{
-		to_swap = NULL;
 		if ((index << 1) >= heap->i)
 			break ;
 		else if ((index << 1) + 1 >= heap->i)
-			to_swap = ((t_room **)heap->buffer + (new_index = (index << 1)));
+			to_swap = ((t_room **)heap->buffer
+					+ (new_index = (index << 1)));
 		else
 			to_swap = (*((t_room **)heap->buffer + (index << 1)))->distance
-				< (*((t_room **)heap->buffer + ((index << 1) + 1)))->distance
-				? ((t_room **)heap->buffer + (new_index = (index << 1)))
-				: ((t_room **)heap->buffer + (new_index = ((index << 1) + 1)));
+	< (*((t_room **)heap->buffer + ((index << 1) + 1)))->distance
+	? ((t_room **)heap->buffer + (new_index = (index << 1)))
+	: ((t_room **)heap->buffer + (new_index = ((index << 1) + 1)));
 		if (!to_swap || (*to_swap)->distance > (*((t_room **)heap->buffer
 												+ (index)))->distance)
-			break;
+			break ;
 		(*((t_room **)heap->buffer + (index)))->heap_index = new_index;
 		(*to_swap)->heap_index = index;
-		tmp = *to_swap;
-		*to_swap = *((t_room **)heap->buffer + (index));
-		*((t_room **)heap->buffer + (index)) = tmp;
+		ft_heap_swap_percolate(to_swap, (t_room **)heap->buffer + (index));
 		index = new_index;
 	}
 }

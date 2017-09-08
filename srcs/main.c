@@ -6,7 +6,7 @@
 /*   By: sclolus <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/10 03:50:38 by sclolus           #+#    #+#             */
-/*   Updated: 2017/09/08 04:20:11 by sclolus          ###   ########.fr       */
+/*   Updated: 2017/09/08 06:37:01 by sclolus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ static inline t_solve_stack	*ft_make_solve_stack(t_lem_in_data *data)
 	return (stack);
 }
 
-inline void ft_reset_dijkstra_values(t_mem_block *data, uint32_t value)
+inline void					ft_reset_dijkstra_values(t_mem_block *data
+													, uint32_t value)
 {
 	t_mem_block	*tmp;
 	uint64_t	i;
@@ -51,7 +52,7 @@ inline void ft_reset_dijkstra_values(t_mem_block *data, uint32_t value)
 	}
 }
 
-int			main(int argc, char **argv)
+int							main(int argc, char **argv)
 {
 	t_lem_in_data	*lem_in_data;
 	t_lem_flags		flags;
