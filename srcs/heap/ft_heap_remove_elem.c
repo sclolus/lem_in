@@ -6,7 +6,7 @@
 /*   By: sclolus <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/31 19:00:06 by sclolus           #+#    #+#             */
-/*   Updated: 2017/09/01 12:07:11 by sclolus          ###   ########.fr       */
+/*   Updated: 2017/09/08 06:31:09 by sclolus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ inline void		ft_min_heap_remove_elem(t_heap *heap)
 
 inline void		ft_max_heap_remove_elem(t_heap *heap)
 {
-
 	ft_memcpy((unsigned char *)heap->buffer + (1 * heap->type_size)
 	, (unsigned char *)heap->buffer + ((heap->i - 1) * heap->type_size)
 	, heap->type_size);

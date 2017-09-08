@@ -6,12 +6,11 @@
 /*   By: sclolus <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/18 05:38:27 by sclolus           #+#    #+#             */
-/*   Updated: 2017/09/08 06:20:10 by sclolus          ###   ########.fr       */
+/*   Updated: 2017/09/08 06:33:11 by sclolus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
-#include <stdio.h>//
 
 inline static void		ft_print_path(t_solve_stack *stack, int32_t nbr
 									, uint32_t u, uint32_t i)
@@ -70,7 +69,8 @@ inline static void		ft_print_stack(t_lem_in_data *lem_in_data
 	ft_static_put(NULL, 0, STATIC_PUT_FLUSH);
 }
 
-inline static void		ft_show_path(t_lem_in_data __attribute__((unused))*lem_in_data
+inline static void		ft_show_path(
+							t_lem_in_data __attribute__((unused)) *lem_in_data
 							, t_solve_stack *stack, uint64_t index)
 {
 	uint32_t	i;
@@ -85,26 +85,6 @@ inline static void		ft_show_path(t_lem_in_data __attribute__((unused))*lem_in_da
 	}
 	ft_static_put(NULL, 0, STATIC_PUT_FLUSH);
 }
-
-/* inline static uint64_t	ft_get_nbr_path(t_lem_in_data *lem_in_data) */
-/* { */
-
-/* } */
-
-/* inline static void	ft_print_stack(t_lem_in_data *lem_in_data) */
-/* { */
-/* 	t_room		*base; */
-/* 	uint64_t	i; */
-
-/* 	base = lem_in_data->end; */
-/* 	i = 0; */
-/* 	while (i < base->nbr_tube) */
-/* 	{ */
-/* 		base->tubes[i] */
-/* 		i++; */
-/* 	} */
-/* } */
-
 
 void					ft_put_solution(t_lem_in_data *lem_in_data
 						, t_solve_stack *stack, uint64_t index)

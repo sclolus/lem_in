@@ -6,7 +6,7 @@
 /*   By: sclolus <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/31 21:19:38 by sclolus           #+#    #+#             */
-/*   Updated: 2017/09/05 09:35:33 by sclolus          ###   ########.fr       */
+/*   Updated: 2017/09/08 06:35:47 by sclolus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,8 @@ static inline void	ft_update_neighbour_distances(t_heap *heap, t_room *room)
 		{
 			(*((t_room**)tmp->block + i))->distance = distance;
 			(*((t_room**)tmp->block + i))->shortest = room;
-			ft_min_heap_percolate_up(heap, (*((t_room**)tmp->block + i))->heap_index);
+			ft_min_heap_percolate_up(heap
+								, (*((t_room**)tmp->block + i))->heap_index);
 		}
 		i++;
 		if (i * sizeof(t_room*) >= tmp->offset && tmp->next && !(i = 0))
@@ -62,10 +63,10 @@ static inline void	ft_update_neighbour_distances(t_heap *heap, t_room *room)
 	}
 }
 
-
-static void	ft_swap_target(t_lem_in_data *lem_in_data)
+static void			ft_swap_target(t_lem_in_data *lem_in_data)
 {
 	t_room	*tmp;
+
 	lem_in_data->start->attribute = END;
 	lem_in_data->end->attribute = START;
 	tmp = lem_in_data->end;
@@ -73,7 +74,7 @@ static void	ft_swap_target(t_lem_in_data *lem_in_data)
 	lem_in_data->start = tmp;
 }
 
-void		ft_dijkstra(t_lem_in_data *lem_in_data, t_room *start)
+void				ft_dijkstra(t_lem_in_data *lem_in_data, t_room *start)
 {
 	t_heap			*graph_heap;
 	t_room			*tmp;
