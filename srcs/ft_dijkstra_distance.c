@@ -6,7 +6,7 @@
 /*   By: sclolus <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/02 16:04:23 by sclolus           #+#    #+#             */
-/*   Updated: 2017/09/05 09:36:08 by sclolus          ###   ########.fr       */
+/*   Updated: 2017/09/08 23:17:39 by sclolus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,8 +106,6 @@ void	__attribute__((noreturn)) ft_dijkstra_distance(t_lem_in_data *lem_in_data)
 	while (graph_heap->i > 1)
 	{
 		tmp = ((t_room**)graph_heap->buffer)[1];
-/* 		if (tmp->attribute == END) */
-/* 			break ; */
 		ft_min_heap_remove_elem(graph_heap);
 		tmp->used = 1;
 		ft_update_neighbour_distances(graph_heap, tmp);

@@ -6,7 +6,7 @@
 /*   By: sclolus <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/10 03:50:38 by sclolus           #+#    #+#             */
-/*   Updated: 2017/09/08 06:37:01 by sclolus          ###   ########.fr       */
+/*   Updated: 2017/09/08 23:23:40 by sclolus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static inline t_solve_stack	*ft_make_solve_stack(t_lem_in_data *data)
 	uint64_t		i;
 
 	if ((i = (data->end->distance)) == ~0UL)
-		ft_error_exit(1, (char*[]){LEM_IN_ERR}, EXIT_FAILURE);
+		ft_put_lem_in_error();
 	if (!(stack = (t_solve_stack*)ft_memalloc(sizeof(t_solve_stack)
 						* data->room_nbr)))
 		ft_error_exit(1, (char*[]){MALLOC_FAILURE}, EXIT_FAILURE);
@@ -62,10 +62,7 @@ int							main(int argc, char **argv)
 	if (argc == 2)
 		flags = ft_parse_flags(argv[1]);
 	else if (argc > 2)
-	{
-		ft_putendl_fd(LEM_IN_ERR, 2);
-		return (EXIT_FAILURE);
-	}
+		ft_put_lem_in_error();
 	lem_in_data = ft_parse();
 	lem_in_data->flags = flags;
 	ft_check_integrity(lem_in_data);

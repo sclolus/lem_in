@@ -6,7 +6,7 @@
 /*   By: sclolus <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/05 04:39:40 by sclolus           #+#    #+#             */
-/*   Updated: 2017/09/08 09:15:05 by sclolus          ###   ########.fr       */
+/*   Updated: 2017/09/08 23:24:06 by sclolus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,8 @@ inline static void		ft_set_lems(t_lem *lems, t_lem_in_data *lem_in_data
 	uint32_t	lem_nbr;
 
 	lem_nbr = 0;
+	if (!nbr_path)
+		ft_put_lem_in_error();
 	while (lem_nbr < lem_in_data->lem_nbr)
 	{
 		i = 0;

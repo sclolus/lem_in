@@ -1,20 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_get_set_states.c                                :+:      :+:    :+:   */
+/*   ft_put_lem_in_error.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sclolus <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/07/25 23:30:21 by sclolus           #+#    #+#             */
-/*   Updated: 2017/09/08 23:09:27 by sclolus          ###   ########.fr       */
+/*   Created: 2017/09/08 23:21:34 by sclolus           #+#    #+#             */
+/*   Updated: 2017/09/08 23:24:27 by sclolus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-int32_t	*ft_get_set_states(void)
+inline NORETURN	ft_put_lem_in_error(void)
 {
-	static int32_t	states[3];
-
-	return (states);
+	ft_putendl_fd(LEM_IN_ERR, 2);
+	exit(EXIT_FAILURE);
 }

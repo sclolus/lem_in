@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_get_set_states.c                                :+:      :+:    :+:   */
+/*   ft_get_last_modified_capacity.c                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sclolus <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/07/25 23:30:21 by sclolus           #+#    #+#             */
-/*   Updated: 2017/09/08 23:09:27 by sclolus          ###   ########.fr       */
+/*   Created: 2017/09/08 22:51:55 by sclolus           #+#    #+#             */
+/*   Updated: 2017/09/08 22:56:45 by sclolus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-int32_t	*ft_get_set_states(void)
+uint32_t	*ft_get_last_modified_capacity(void)
 {
-	static int32_t	states[3];
+	static uint32_t	capacity = 1;
 
-	return (states);
+	return (&capacity);
 }

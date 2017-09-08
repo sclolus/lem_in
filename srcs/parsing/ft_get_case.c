@@ -6,7 +6,7 @@
 /*   By: sclolus <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/10 04:07:59 by sclolus           #+#    #+#             */
-/*   Updated: 2017/07/26 18:56:51 by sclolus          ###   ########.fr       */
+/*   Updated: 2017/09/08 22:57:35 by sclolus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,8 @@ inline static int32_t	ft_is_case_tube(char *line, t_parsing_case last_case)
 	bool = 0;
 	if (last_case == CMD &&
 		(*ft_get_last_attribute() == START
-		|| *ft_get_last_attribute() == END))
+		|| *ft_get_last_attribute() == END
+		|| *ft_get_last_attribute() == CAPACITY))
 		return (0);
 	while (line[i])
 	{

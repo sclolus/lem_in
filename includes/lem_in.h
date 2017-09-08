@@ -6,7 +6,7 @@
 /*   By: sclolus <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/25 13:52:30 by sclolus           #+#    #+#             */
-/*   Updated: 2017/09/08 09:09:39 by sclolus          ###   ########.fr       */
+/*   Updated: 2017/09/08 23:22:19 by sclolus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ typedef enum	e_attribute
 	NORMAL,
 	START,
 	END,
+	CAPACITY,
 }				t_attribute;
 
 typedef struct	s_coord
@@ -140,7 +141,7 @@ typedef struct	s_lem_in_cmd
 {
 	char		*identifier;
 	t_attribute	attr;
-	char		pad[4];
+	uint32_t	len;
 }				t_cmd;
 
 typedef int32_t	(*t_parsing_action)(char *, t_lem_in_data *);
@@ -170,6 +171,7 @@ int32_t			ft_is_case_start(char __attribute__((unused)) *line
 */
 
 t_attribute		*ft_get_last_attribute(void);
+uint32_t		*ft_get_last_modified_capacity(void);
 int32_t			ft_get_lem_nbr(char *line
 							, t_lem_in_data *lem_in_data) __attribute__((cold));
 int32_t			ft_get_new_room(char *line
@@ -231,4 +233,6 @@ t_mem_block		*ft_create_mem_block(uint64_t capacity);
 # define ERR_INVALID_FLAG "Invalid flags: "
 # define FLAG_USAGE "Supported flags are: -v, -q, -d, -s, -m"
 # define INVALID_FLAGS_FORMAT "Invalid flag format: '-[flags]'"
+
+NORETURN	ft_put_lem_in_error(void);
 #endif

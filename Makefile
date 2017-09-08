@@ -12,6 +12,7 @@ SRC= srcs/main.c \
 	srcs/parsing/ft_get_case.c \
 	srcs/parsing/ft_is_case_start.c \
 	srcs/parsing/ft_get_last_attr.c \
+	srcs/parsing/ft_get_last_modified_capacity.c \
 	srcs/parsing/ft_parsing_actions.c \
 	srcs/parsing/ft_get_new_tube.c \
 	srcs/parsing/ft_get_new_room.c \
@@ -27,7 +28,8 @@ SRC= srcs/main.c \
 	srcs/heap/ft_heap_remove_elem.c \
 	srcs/heap/ft_make_heap.c \
 	srcs/heap/ft_percolate_down.c \
-	srcs/heap/ft_percolate_up.c
+	srcs/heap/ft_percolate_up.c \
+	srcs/ft_put_lem_in_error.c
 
 OBJ= $(SRC:.c=.o)
 HDR_PATH= ./libft/includes/
