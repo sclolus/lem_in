@@ -6,7 +6,7 @@
 /*   By: sclolus <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/05 04:37:45 by sclolus           #+#    #+#             */
-/*   Updated: 2017/09/08 04:21:40 by sclolus          ###   ########.fr       */
+/*   Updated: 2017/09/08 09:13:34 by sclolus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,8 +121,7 @@ inline static uint32_t	ft_make_path_stack(t_solve_stack *stack, uint32_t distanc
 		if (room->attribute == START)
 			return (i);
 		room->used = 1;
-		i--;
-		if (i == 0)
+		if (--i == 0)
 			return (0);
 	}
 }
@@ -236,13 +235,12 @@ inline static void		ft_add_one_path(t_list **lst, t_solve_stack *stack, uint32_t
 	}
 }
 
-void		ft_multi_path(t_lem_in_data *lem_in_data)
+uint32_t				*ft_multi_path(t_lem_in_data *lem_in_data)
 {
 	t_list			*paths;
 	t_room			*room;
 	t_solve_stack	*stack;
 	uint32_t		lem_nbr;
-	uint32_t		flow;
 	uint32_t		distance_plage;
 	uint32_t		len_path;
 	uint32_t		nbr_path;
@@ -269,11 +267,11 @@ void		ft_multi_path(t_lem_in_data *lem_in_data)
 		}
 		(void)ft_put_stack;
 //		ft_put_stack(stack);
-		ft_add_flow_to_path(stack, (flow = ft_get_max_flow(stack)), &lem_nbr);
+		ft_add_flow_to_path(stack, ft_get_max_flow(stack), &lem_nbr);
 		nbr_path++;
 		ft_add_one_path(&paths, stack, len_path);
 	}
 //	ft_put_capacities(lem_in_data->data);
 	free(stack);
-	ft_put_multi_path(lem_in_data, paths, nbr_path);
+	return (ft_put_multi_path(lem_in_data, paths, nbr_path));
 }

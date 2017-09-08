@@ -6,7 +6,7 @@
 /*   By: sclolus <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/25 13:52:30 by sclolus           #+#    #+#             */
-/*   Updated: 2017/09/08 06:12:02 by sclolus          ###   ########.fr       */
+/*   Updated: 2017/09/08 09:09:39 by sclolus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ typedef struct	s_room
 typedef struct	s_flags8
 {
 	char	distance_algo : 1;
-	char	bits1 : 1;
+	char	verbose : 1;
 	char	quiet : 1;
 	char	show_path : 1;
 	char	multi_path : 1;
@@ -201,8 +201,8 @@ NORETURN		ft_dijkstra_distance(t_lem_in_data *lem_in_data);
 void			ft_put_lines(t_mem_block *lines);
 NORETURN		ft_put_solution(t_lem_in_data *lem_in_data, t_solve_stack *stack
 								, uint64_t index);
-void			ft_multi_path(t_lem_in_data *lem_in_data);
-void			ft_put_multi_path(t_lem_in_data *lem_in_data
+uint32_t		*ft_multi_path(t_lem_in_data *lem_in_data);
+uint32_t		*ft_put_multi_path(t_lem_in_data *lem_in_data
 								, t_list *paths_list, uint32_t nbr_path);
 
 void			ft_reset_dijkstra_values(t_mem_block *data, uint32_t value);
@@ -229,6 +229,6 @@ t_mem_block		*ft_create_mem_block(uint64_t capacity);
 # define MALLOC_FAILURE "malloc() failed due to insufficient ressources left"
 # define LEM_IN_ERR "ERROR"
 # define ERR_INVALID_FLAG "Invalid flags: "
-# define FLAG_USAGE "Supported flags are: -v, -q, -d, -s"
+# define FLAG_USAGE "Supported flags are: -v, -q, -d, -s, -m"
 # define INVALID_FLAGS_FORMAT "Invalid flag format: '-[flags]'"
 #endif

@@ -6,7 +6,7 @@
 /*   By: sclolus <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/05 04:39:40 by sclolus           #+#    #+#             */
-/*   Updated: 2017/09/08 06:29:58 by sclolus          ###   ########.fr       */
+/*   Updated: 2017/09/08 09:15:05 by sclolus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,11 @@ inline static void		ft_put_lem_move(t_lem *lem)
 	ft_static_put(" ", 1, 0);
 }
 
-inline static void		ft_send_lem_to_path(t_lem *lem, t_room *room)
+inline static void		ft_send_lem_to_path(t_lem *lem, t_room *room, uint32_t *stats)
 {
 	if (!room || !room->flow.capacity)
 		return ;
+	stats[1]++;
 	lem->room->flow.capacity++;
 	lem->room = room;
 	lem->index++;
@@ -102,9 +103,10 @@ inline static void		ft_set_lems(t_lem *lems, t_lem_in_data *lem_in_data
 	}
 }
 
-void					ft_put_multi_path(t_lem_in_data *lem_in_data
+uint32_t				*ft_put_multi_path(t_lem_in_data *lem_in_data
 										, t_list *paths_list, uint32_t nbr_path)
 {
+	static uint32_t	stats[2];
 	t_lem			*lems;
 	t_path			**paths;
 	uint32_t		i;
@@ -124,10 +126,12 @@ void					ft_put_multi_path(t_lem_in_data *lem_in_data
 				continue ;
 			}
 			ft_send_lem_to_path(lems + u
-			, (paths[lems[u].path_index])->rooms[lems[u].index + 1]);
+			, (paths[lems[u].path_index])->rooms[lems[u].index + 1], stats);
 			if (lems[u++].room->attribute == END)
 				i++;
 		}
+		stats[0]++;
 		ft_static_put("\n", 1, 0);
 	}
+	return (stats);
 }
