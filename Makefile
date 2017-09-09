@@ -3,6 +3,8 @@ SRC= srcs/main.c \
 	srcs/ft_put_lines.c \
 	srcs/ft_put_solution.c \
 	srcs/ft_multi_path.c \
+	srcs/ft_add_one_path.c \
+	srcs/ft_get_max_flow.c \
 	srcs/ft_put_multi_path.c \
 	srcs/ft_dijkstra.c \
 	srcs/ft_dijkstra_distance.c \

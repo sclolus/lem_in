@@ -6,7 +6,7 @@
 /*   By: sclolus <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/25 13:52:30 by sclolus           #+#    #+#             */
-/*   Updated: 2017/09/09 02:56:46 by sclolus          ###   ########.fr       */
+/*   Updated: 2017/09/09 05:30:59 by sclolus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -210,6 +210,13 @@ uint32_t		*ft_show_path(
 uint32_t		*ft_multi_path(t_lem_in_data *lem_in_data, uint32_t nbr_path_to_find);
 uint32_t		*ft_put_multi_path(t_lem_in_data *lem_in_data
 								, t_list *paths_list, uint32_t nbr_path);
+void			ft_add_one_path(t_list **lst, t_solve_stack *stack
+								, uint32_t path_len);
+void			ft_add_one_path_sort(t_list *tmp, t_list **lst);
+uint32_t		ft_get_max_flow(t_solve_stack *stack);
+void			ft_add_flow_to_path(t_solve_stack *stack, uint32_t flow
+								, uint32_t *lem_nbr);
+
 
 /*
 ** Mem_block handling

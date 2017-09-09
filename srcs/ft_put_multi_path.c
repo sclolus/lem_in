@@ -6,7 +6,7 @@
 /*   By: sclolus <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/05 04:39:40 by sclolus           #+#    #+#             */
-/*   Updated: 2017/09/09 02:46:17 by sclolus          ###   ########.fr       */
+/*   Updated: 2017/09/09 05:13:27 by sclolus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ inline static void		ft_put_lem_move(t_lem *lem)
 	ft_static_put(" ", 1, 0);
 }
 
-inline static void		ft_send_lem_to_path(t_lem *lem, t_room *room, uint32_t *stats)
+inline static void		ft_send_lem_to_path(t_lem *lem, t_room *room
+											, uint32_t *stats)
 {
 	if (!room->flow.capacity)
 		return ;
@@ -92,7 +93,6 @@ inline static void		ft_set_lems(t_lem *lems, t_lem_in_data *lem_in_data
 			u = 0;
 			while (lem_nbr < lem_in_data->lem_nbr && u < paths[0]->path_len)
 			{
-//				printf("Attributed lem: %u to path %u\n", lem_nbr + 1, i);
 				lems[lem_nbr].room = lem_in_data->start;
 				lems[lem_nbr].index = 0;
 				lems[lem_nbr].lem_number = lem_nbr + 1;
@@ -106,7 +106,7 @@ inline static void		ft_set_lems(t_lem *lems, t_lem_in_data *lem_in_data
 }
 
 uint32_t				*ft_put_multi_path(t_lem_in_data *lem_in_data
-										   , t_list *paths_list, uint32_t nbr_path)
+										, t_list *paths_list, uint32_t nbr_path)
 {
 	static uint32_t	stats[2];
 	t_lem			*lems;
@@ -122,11 +122,8 @@ uint32_t				*ft_put_multi_path(t_lem_in_data *lem_in_data
 	{
 		while (u < lem_in_data->lem_nbr)
 		{
-			if (lems[u].room->attribute == END)
-			{
-				u++;
+			if (lems[u].room->attribute == END && (++u))
 				continue ;
-			}
 			ft_send_lem_to_path(lems + u
 			, (paths[lems[u].path_index])->rooms[lems[u].index + 1], stats);
 			if (lems[u++].room->attribute == END)
