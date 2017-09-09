@@ -6,6 +6,8 @@ SRC= srcs/main.c \
 	srcs/ft_add_one_path.c \
 	srcs/ft_get_max_flow.c \
 	srcs/ft_put_multi_path.c \
+	srcs/ft_cleanup_lems.c \
+	srcs/ft_cleanup_paths.c \
 	srcs/ft_dijkstra.c \
 	srcs/ft_dijkstra_distance.c \
 	srcs/parsing/ft_parse.c \
@@ -36,7 +38,7 @@ SRC= srcs/main.c \
 OBJ= $(SRC:.c=.o)
 HDR_PATH= ./libft/includes/
 CC= gcc
-CC_FLAGS= -Ofast -v -Weverything -Wall -Wextra  -g3 -fsanitize=address -fsanitize-blacklist=my_ignores.txt #-Werror
+CC_FLAGS= -Ofast -v -Weverything -Wall -Wextra # -g3 -fsanitize=address -fsanitize-blacklist=my_ignores.txt #-Werror
 #VPATH=./srcs:./obj:./includes/
 
 all: submodule $(NAME)

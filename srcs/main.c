@@ -6,7 +6,7 @@
 /*   By: sclolus <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/10 03:50:38 by sclolus           #+#    #+#             */
-/*   Updated: 2017/09/09 02:37:53 by sclolus          ###   ########.fr       */
+/*   Updated: 2017/09/09 06:31:53 by sclolus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,6 @@ int			main(int argc, char **argv)
 	else
 	{
 		ft_dijkstra(lem_in_data, lem_in_data->start);
-		ft_put_solution(lem_in_data, lem_in_data->end->distance);
+		ft_put_solution(lem_in_data);
 	}
 }

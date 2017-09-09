@@ -6,18 +6,12 @@
 /*   By: sclolus <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/25 13:52:30 by sclolus           #+#    #+#             */
-/*   Updated: 2017/09/09 05:30:59 by sclolus          ###   ########.fr       */
+/*   Updated: 2017/09/09 06:38:27 by sclolus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LEM_IN_H
 # define LEM_IN_H
-
-/*
-** DEBUG
-*/ //
-
-# define CHECK(x) do {ft_putendl_fd("_______", 2);ft_putendl_fd(#x, 2);ft_putendl_fd("_______", 2);}while(0);
 
 # include "libft.h"
 # include "ft_heap.h"
@@ -202,12 +196,12 @@ void			ft_solve(t_lem_in_data *lem_in_data);
 void			ft_dijkstra(t_lem_in_data *lem_in_data, t_room *start);
 NORETURN		ft_dijkstra_distance(t_lem_in_data *lem_in_data);
 void			ft_put_lines(t_mem_block *lines);
-NORETURN		ft_put_solution(t_lem_in_data *lem_in_data
-								, uint64_t index);
+NORETURN		ft_put_solution(t_lem_in_data *lem_in_data);
 uint32_t		*ft_show_path(
-							t_lem_in_data *lem_in_data
-							, t_path **paths, uint32_t nbr_path, uint32_t *stats);
-uint32_t		*ft_multi_path(t_lem_in_data *lem_in_data, uint32_t nbr_path_to_find);
+						t_lem_in_data *lem_in_data
+						, t_path **paths, uint32_t nbr_path, uint32_t *stats);
+uint32_t		*ft_multi_path(t_lem_in_data *lem_in_data
+							, uint32_t nbr_path_to_find);
 uint32_t		*ft_put_multi_path(t_lem_in_data *lem_in_data
 								, t_list *paths_list, uint32_t nbr_path);
 void			ft_add_one_path(t_list **lst, t_solve_stack *stack
@@ -217,6 +211,12 @@ uint32_t		ft_get_max_flow(t_solve_stack *stack);
 void			ft_add_flow_to_path(t_solve_stack *stack, uint32_t flow
 								, uint32_t *lem_nbr);
 
+/*
+** Cleanup functions
+*/
+
+void			ft_cleanup_lems(t_lem **lems);
+void			ft_cleanup_paths(t_path ***paths);
 
 /*
 ** Mem_block handling
@@ -243,5 +243,5 @@ t_mem_block		*ft_create_mem_block(uint64_t capacity);
 # define FLAG_USAGE "Supported flags are: -v, -q, -d, -s, -m"
 # define INVALID_FLAGS_FORMAT "Invalid flag format: '-[flags]'"
 
-NORETURN	ft_put_lem_in_error(void);
+NORETURN		ft_put_lem_in_error(void);
 #endif

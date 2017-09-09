@@ -6,7 +6,7 @@
 /*   By: sclolus <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/10 03:51:49 by sclolus           #+#    #+#             */
-/*   Updated: 2017/09/03 20:43:48 by sclolus          ###   ########.fr       */
+/*   Updated: 2017/09/09 06:31:47 by sclolus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,5 +51,6 @@ t_lem_in_data		*ft_parse(void)
 		ft_mem_block_push_back_elem(lem_in_data.lines, &line, sizeof(line));
 		last_case = current_case;
 	}
+	free(line);
 	return (&lem_in_data);
 }

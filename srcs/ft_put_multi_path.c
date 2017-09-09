@@ -6,7 +6,7 @@
 /*   By: sclolus <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/05 04:39:40 by sclolus           #+#    #+#             */
-/*   Updated: 2017/09/09 05:13:27 by sclolus          ###   ########.fr       */
+/*   Updated: 2017/09/09 05:49:31 by sclolus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ inline static t_path	**ft_make_paths_tab(t_list *paths_list
 	t_list			*tmp;
 	uint32_t		i;
 
-	if (!(paths = (t_path**)malloc(sizeof(t_path*) * nbr_path)))
+	if (!(paths = (t_path**)malloc(sizeof(t_path*) * (nbr_path + 1))))
 		ft_error_exit(1, (char*[]){MALLOC_FAILURE}, EXIT_FAILURE);
 	i = 0;
 	while (i < nbr_path)
@@ -72,6 +72,7 @@ inline static t_path	**ft_make_paths_tab(t_list *paths_list
 		free(tmp);
 		i++;
 	}
+	paths[i] = NULL;
 	return (paths);
 }
 
@@ -109,8 +110,8 @@ uint32_t				*ft_put_multi_path(t_lem_in_data *lem_in_data
 										, t_list *paths_list, uint32_t nbr_path)
 {
 	static uint32_t	stats[2];
-	t_lem			*lems;
-	t_path			**paths;
+	t_lem			*lems __attribute__((cleanup(ft_cleanup_lems)));
+	t_path			**paths __attribute__((cleanup(ft_cleanup_paths)));
 	uint32_t		i;
 	uint32_t		u;
 

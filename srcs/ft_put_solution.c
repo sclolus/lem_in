@@ -6,7 +6,7 @@
 /*   By: sclolus <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/18 05:38:27 by sclolus           #+#    #+#             */
-/*   Updated: 2017/09/09 05:11:10 by sclolus          ###   ########.fr       */
+/*   Updated: 2017/09/09 06:35:22 by sclolus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,7 @@ inline static void		ft_print_verbose(uint32_t *stats)
 	free(tmp);
 }
 
-void					ft_put_solution(t_lem_in_data *lem_in_data
-										, uint64_t index)
+void					ft_put_solution(t_lem_in_data *lem_in_data)
 {
 	uint32_t	*stats;
 
