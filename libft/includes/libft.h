@@ -6,7 +6,7 @@
 /*   By: sclolus <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/04 11:35:25 by sclolus           #+#    #+#             */
-/*   Updated: 2017/09/08 23:20:42 by sclolus          ###   ########.fr       */
+/*   Updated: 2017/09/09 02:25:15 by sclolus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 # define PHASZERO(x) ((((x + (0x7f7f7f7f7f7f7f7f)) ^ ~x) & 0x818080808080808080)
 # define PHASN(x, n) (Phaszero(x ^ ((~0UL / 255L) * n)))
-# define STATIC_BUF_SIZE 8192
+# define STATIC_BUF_SIZE 524288
 # define STATIC_PUT_FLUSH 1
 
 # define ERROR_NAME_HEADER "lem_in: "

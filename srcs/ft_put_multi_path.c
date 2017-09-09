@@ -6,7 +6,7 @@
 /*   By: sclolus <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/05 04:39:40 by sclolus           #+#    #+#             */
-/*   Updated: 2017/09/08 23:24:06 by sclolus          ###   ########.fr       */
+/*   Updated: 2017/09/09 02:46:17 by sclolus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ inline static void		ft_put_lem_move(t_lem *lem)
 
 inline static void		ft_send_lem_to_path(t_lem *lem, t_room *room, uint32_t *stats)
 {
-	if (!room || !room->flow.capacity)
+	if (!room->flow.capacity)
 		return ;
 	stats[1]++;
 	lem->room->flow.capacity++;
@@ -60,7 +60,7 @@ inline static t_path	**ft_make_paths_tab(t_list *paths_list
 	t_list			*tmp;
 	uint32_t		i;
 
-	if (!(paths = (t_path**)ft_memalloc(sizeof(t_path*) * nbr_path)))
+	if (!(paths = (t_path**)malloc(sizeof(t_path*) * nbr_path)))
 		ft_error_exit(1, (char*[]){MALLOC_FAILURE}, EXIT_FAILURE);
 	i = 0;
 	while (i < nbr_path)
@@ -106,7 +106,7 @@ inline static void		ft_set_lems(t_lem *lems, t_lem_in_data *lem_in_data
 }
 
 uint32_t				*ft_put_multi_path(t_lem_in_data *lem_in_data
-										, t_list *paths_list, uint32_t nbr_path)
+										   , t_list *paths_list, uint32_t nbr_path)
 {
 	static uint32_t	stats[2];
 	t_lem			*lems;
@@ -114,7 +114,7 @@ uint32_t				*ft_put_multi_path(t_lem_in_data *lem_in_data
 	uint32_t		i;
 	uint32_t		u;
 
-	if (!(lems = ft_memalloc(sizeof(t_lem) * lem_in_data->lem_nbr)))
+	if (!(lems = (t_lem*)malloc(sizeof(t_lem) * lem_in_data->lem_nbr)))
 		ft_error_exit(1, (char*[]){MALLOC_FAILURE}, EXIT_FAILURE);
 	paths = ft_make_paths_tab(paths_list, nbr_path);
 	ft_set_lems(lems, lem_in_data, paths, (nbr_path | (i = 0)));
@@ -122,7 +122,7 @@ uint32_t				*ft_put_multi_path(t_lem_in_data *lem_in_data
 	{
 		while (u < lem_in_data->lem_nbr)
 		{
-			if (lems[u].index == (paths[lems[u].path_index])->path_len - 1)
+			if (lems[u].room->attribute == END)
 			{
 				u++;
 				continue ;
@@ -135,5 +135,5 @@ uint32_t				*ft_put_multi_path(t_lem_in_data *lem_in_data
 		stats[0]++;
 		ft_static_put("\n", 1, 0);
 	}
-	return (stats);
+	return (ft_show_path(lem_in_data, paths, nbr_path, stats));
 }

@@ -6,7 +6,7 @@
 /*   By: sclolus <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/25 14:11:31 by sclolus           #+#    #+#             */
-/*   Updated: 2017/09/08 23:10:38 by sclolus          ###   ########.fr       */
+/*   Updated: 2017/09/09 01:25:41 by sclolus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,12 @@ static inline void		ft_new_room_attr_actions(t_lem_in_data *lem_in_data, t_room 
 	if (*last_attr == START)
 	{
 		lem_in_data->start = room;
+		room->flow.capacity = ~0U;
 		ft_get_set_states()[0] = 1;
 	}
 	else if (*last_attr == END)
 	{
+		room->flow.capacity = ~0U;
 		lem_in_data->end = room;
 		ft_get_set_states()[1] = 1;
 	}

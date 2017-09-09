@@ -6,7 +6,7 @@
 /*   By: sclolus <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/02 16:04:23 by sclolus           #+#    #+#             */
-/*   Updated: 2017/09/08 23:17:39 by sclolus          ###   ########.fr       */
+/*   Updated: 2017/09/09 02:48:27 by sclolus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,6 @@ static inline t_solve_stack	*ft_make_solve_stack(t_lem_in_data *data)
 
 void	__attribute__((noreturn)) ft_dijkstra_distance(t_lem_in_data *lem_in_data)
 {
-	t_solve_stack	*stack;
 	t_heap			*graph_heap;
 	t_room			*start;
 	t_room			*tmp;
@@ -110,6 +109,5 @@ void	__attribute__((noreturn)) ft_dijkstra_distance(t_lem_in_data *lem_in_data)
 		tmp->used = 1;
 		ft_update_neighbour_distances(graph_heap, tmp);
 	}
-	stack = ft_make_solve_stack(lem_in_data);
-	ft_put_solution(lem_in_data, stack, lem_in_data->end->distance);
+	ft_put_solution(lem_in_data, lem_in_data->end->distance);
 }

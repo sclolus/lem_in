@@ -6,7 +6,7 @@
 /*   By: sclolus <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/25 13:52:30 by sclolus           #+#    #+#             */
-/*   Updated: 2017/09/08 23:22:19 by sclolus          ###   ########.fr       */
+/*   Updated: 2017/09/09 02:56:46 by sclolus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,6 +155,7 @@ t_parsing_case	ft_get_case(char *line, t_parsing_case last_case);
 
 # define NORETURN __attribute__((noreturn)) void
 # define LEM_SHOW_PATH "===============Path===============\n"
+# define LEM_VERBOSE "===============Stats==============\n"
 
 t_lem_flags		ft_parse_flags(char *flags);
 NORETURN		ft_flags_usage(char invalid_flag);
@@ -201,13 +202,14 @@ void			ft_solve(t_lem_in_data *lem_in_data);
 void			ft_dijkstra(t_lem_in_data *lem_in_data, t_room *start);
 NORETURN		ft_dijkstra_distance(t_lem_in_data *lem_in_data);
 void			ft_put_lines(t_mem_block *lines);
-NORETURN		ft_put_solution(t_lem_in_data *lem_in_data, t_solve_stack *stack
+NORETURN		ft_put_solution(t_lem_in_data *lem_in_data
 								, uint64_t index);
-uint32_t		*ft_multi_path(t_lem_in_data *lem_in_data);
+uint32_t		*ft_show_path(
+							t_lem_in_data *lem_in_data
+							, t_path **paths, uint32_t nbr_path, uint32_t *stats);
+uint32_t		*ft_multi_path(t_lem_in_data *lem_in_data, uint32_t nbr_path_to_find);
 uint32_t		*ft_put_multi_path(t_lem_in_data *lem_in_data
 								, t_list *paths_list, uint32_t nbr_path);
-
-void			ft_reset_dijkstra_values(t_mem_block *data, uint32_t value);
 
 /*
 ** Mem_block handling
