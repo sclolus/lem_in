@@ -6,7 +6,7 @@
 /*   By: sclolus <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/18 05:38:27 by sclolus           #+#    #+#             */
-/*   Updated: 2017/09/09 06:35:22 by sclolus          ###   ########.fr       */
+/*   Updated: 2017/09/09 06:47:24 by sclolus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ inline uint32_t			*ft_show_path(
 	if (lem_in_data->flags.bits.show_path)
 	{
 		u = 0;
-		ft_static_put(LEM_SHOW_PATH, sizeof(LEM_SHOW_PATH), 0);
+		ft_static_put(LEM_SHOW_PATH, sizeof(LEM_SHOW_PATH) - 1, 0);
 		while (u < nbr_path)
 		{
 			i = 1;
@@ -45,14 +45,14 @@ inline static void		ft_print_verbose(uint32_t *stats)
 {
 	char	*tmp;
 
-	ft_static_put(LEM_VERBOSE, sizeof(LEM_VERBOSE), 0);
-	ft_static_put("Number of moves: ", sizeof("Number of moves: "), 0);
+	ft_static_put(LEM_VERBOSE, sizeof(LEM_VERBOSE) - 1, 0);
+	ft_static_put("Number of moves: ", sizeof("Number of moves: ") - 1, 0);
 	if (!(tmp = ft_itoa((int)stats[1])))
 		ft_error_exit(1, (char*[]){MALLOC_FAILURE}, EXIT_FAILURE);
 	ft_static_put(tmp, (uint32_t)ft_strlen(tmp), 0);
 	free(tmp);
 	ft_static_put("\n", 1, 0);
-	ft_static_put("Number of turns: ", sizeof("Number of turns: "), 0);
+	ft_static_put("Number of turns: ", sizeof("Number of turns: ") - 1, 0);
 	if (!(tmp = ft_itoa((int)stats[0])))
 		ft_error_exit(1, (char*[]){MALLOC_FAILURE}, EXIT_FAILURE);
 	ft_static_put(tmp, (uint32_t)ft_strlen(tmp), 0);
