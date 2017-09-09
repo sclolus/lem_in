@@ -6,7 +6,7 @@
 /*   By: sclolus <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/25 13:52:30 by sclolus           #+#    #+#             */
-/*   Updated: 2017/09/09 06:38:27 by sclolus          ###   ########.fr       */
+/*   Updated: 2017/09/09 07:01:16 by sclolus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,12 +97,14 @@ typedef struct	s_lem
 	uint32_t	index;
 	uint32_t	path_index;
 	uint32_t	lem_number;
+	char		pad[4];
 }				t_lem;
 
 typedef struct	s_path
 {
 	t_room		**rooms;
 	uint32_t	path_len;
+	char		pad[4];
 }				t_path;
 
 /*

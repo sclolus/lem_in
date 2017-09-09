@@ -6,7 +6,7 @@
 /*   By: sclolus <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/09 05:15:35 by sclolus           #+#    #+#             */
-/*   Updated: 2017/09/09 05:19:50 by sclolus          ###   ########.fr       */
+/*   Updated: 2017/09/09 07:00:39 by sclolus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ inline void		ft_add_one_path(t_list **lst, t_solve_stack *stack
 		ft_error_exit(1, (char*[]){MALLOC_FAILURE}, EXIT_FAILURE);
 	i = 0;
 	path->path_len = path_len;
-	path->rooms = (t_room**)((unsigned char *)path + sizeof(t_path));
+	path->rooms = (t_room**)(void*)((unsigned char *)path + sizeof(t_path));
 	while (i < path_len)
 	{
 		path->rooms[i] = stack[path_len - i - 1].room;
